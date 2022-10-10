@@ -46,7 +46,6 @@ while (game.isGameActive)
             "odpowiedź to {1}", answer, game.questions[game.roundNumber].correctAnswer);
         game.isGameActive = false;
     }
-    
 
     game.roundNumber++;
     
