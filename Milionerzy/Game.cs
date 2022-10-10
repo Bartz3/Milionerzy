@@ -10,17 +10,45 @@ namespace Milionerzy
     {
         public string playerName { get; set; }
         public List<Question> questions { get; set; }
-        public int roundNumber { get; set; }
-
+        public int roundNumber { get; set; } =0;
+       
         public bool isGameActive { get; set; } = false;
+        private string fileName { get; set; } = "easy.txt";
 
-        public enum difficultyLevel
+        private Dictionary<int, string> prizes = new Dictionary<int, string>()
+        {
+            {0,"0 zł"},
+            {1,"500 zł"},
+            {2,"1000 zł"},
+            {3,"2000 zł"},
+            {4,"5000 zł"},
+            {5,"10 000 zł"},
+            {6,"20 000 zł"},
+            {7,"40 000 zł"},
+            {8,"75 000 zł"},
+            {9,"125 000 zł"},
+            {10,"250 000 zł"},
+            {11,"500 000 zł"},
+            {12,"1 000 000 zł"},
+        };
+
+        public enum DifficultyLevel
         {
             easy,
             medium,
             hard
         }
-        public List<Question> readQuestions(string fileName)
+        public Game()
+        {
+
+        }
+        public Game(int diffLvl)
+        {
+            if (diffLvl == 1) fileName = "easy.txt";
+            else if (diffLvl == 2) fileName = "medium.txt";
+            else if (diffLvl == 3) fileName = "hard.txt";
+        }
+        public List<Question> readQuestions()
         {
             List<Question> questionList = new List<Question>();
 
