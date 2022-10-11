@@ -9,11 +9,14 @@ namespace Milionerzy
     internal class Game
     {
         public string playerName { get; set; }
-        public List<Question> questions { get; set; }
-        public int roundNumber { get; set; } =0;
+        public List<Question> questions { get; set; } // List of questions
+        public int roundNumber { get; set; } =0; // Number of round 
        
-        public bool isGameActive { get; set; } = false;
-        private string fileName { get; set; } = "easy.txt";
+        public bool isGameActive { get; set; } = false; // Indicates if game is active
+        private string fileName { get; set; } = "easy.txt"; // Name of file with questions; deafult - easy.txt
+        private bool fiftyFiftyBool { get; set; } = true; // First help bool
+        private bool changeQuestionBool { get; set; } = true; // Second help bool
+        private bool askAudienceBool { get; set; } = true; // Third help bool
 
         private Dictionary<int, string> prizes = new Dictionary<int, string>()
         {
@@ -31,6 +34,27 @@ namespace Milionerzy
             {11,"500 000 zł"},
             {12,"1 000 000 zł"},
         };
+        public void showPrizes(int qNumber)
+        {
+            foreach (KeyValuePair<int, string> item in Prizes.Reverse())
+            {
+                if (item.Key == qNumber)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("{0}. {1}", item.Key, item.Value);
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                else if(item.Key==2 || item.Key == 7)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("{0}. {1}", item.Key, item.Value);
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                else Console.WriteLine("{0}. {1}", item.Key, item.Value);
+            }
+            Console.WriteLine("{0,-20} {1,20}", "Finished!", "[ok]");
+        }
+        public Dictionary<int,string> Prizes { get { return prizes; } }
 
         public enum DifficultyLevel
         {
@@ -42,6 +66,62 @@ namespace Milionerzy
         {
 
         }
+        public void askAudience(int qNumber)
+        {
+            if (askAudienceBool)
+            {
+
+                askAudienceBool = false;
+            }
+        }
+        public void fiftyFifty(int qNumber) // Pierwsze koło ratunkowe 50/50
+        {
+            if (fiftyFiftyBool)
+            {
+                string correctA = questions[qNumber].correctAnswer;
+                int deletedAnswers = 0;
+
+                if (questions[qNumber].answerA.Substring(0, 1) != correctA && deletedAnswers < 2)
+                {
+                    questions[qNumber].answerA += "XXX";
+                    deletedAnswers++;
+                }
+                if (questions[qNumber].answerB.Substring(0, 1) != correctA && deletedAnswers < 2)
+                {
+                    questions[qNumber].answerB += "XXX";
+                    deletedAnswers++;
+                }
+                if (questions[qNumber].answerC.Substring(0, 1) != correctA && deletedAnswers < 2)
+                {
+                    questions[qNumber].answerC += "XXX";
+                    deletedAnswers++;
+                }
+                if (questions[qNumber].answerD.Substring(0, 1) != correctA && deletedAnswers < 2)
+                {
+                    questions[qNumber].answerD += "XXX";
+                    deletedAnswers++;
+                }
+                fiftyFiftyBool = false;
+            }
+
+        }
+        public void changeQuestion(int qNumber)
+        {
+            if (changeQuestionBool)
+            {
+                var temp = qNumber.ToString() + ". " + questions[13].question.Substring(questions[13].question.IndexOf('.') + 1);
+                questions[qNumber].question = temp;
+                questions[qNumber].answerA = questions[13].answerA;
+                questions[qNumber].answerB = questions[13].answerB;
+                questions[qNumber].answerC = questions[13].answerC;
+                questions[qNumber].answerD = questions[13].answerD;
+                questions[qNumber].correctAnswer = questions[13].correctAnswer;
+
+                changeQuestionBool = false;
+            }
+
+        }
+        
         public Game(int diffLvl)
         {
             if (diffLvl == 1) fileName = "easy.txt";
