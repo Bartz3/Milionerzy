@@ -118,7 +118,6 @@ namespace Milionerzy
             }
 
         }
-
         private void exitGame()
         {
             show("Wciśnij dowolny przycisk aby wyjść...");
@@ -151,12 +150,7 @@ namespace Milionerzy
             }
             var eee = $"{playerName} - {winnings}";
             File.WriteAllText(resultsFileName, eee +"\n"+ currentContent);
-            //File.WriteAllText(filePath, newContent + currentContent);
-            //using (StreamWriter sw = new StreamWriter(resultsFileName))
-            //{
-            //    currentContent = File.ReadAllText(resultsFileName);
-            //    sw.WriteLine("{0} - {1}", playerName, winnings);
-            //}
+       
         }
         public void showPrizes(int qNumber)
         {
@@ -211,11 +205,11 @@ namespace Milionerzy
 
         public void startGame()
         {
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine("Witaj w grze Milionerzy!\nPodaj swój nick: ");
             playerName = Console.ReadLine();
             Console.WriteLine("Drogi " + playerName + " GL HF");
-
+            roundNumber = 0;
             Console.ReadKey(true);
 
             questions = readQuestions();
@@ -224,22 +218,19 @@ namespace Milionerzy
   
             while (isGameActive && roundNumber < 13)
             {
-                //Console.WriteLine(logo);
-                //if (Console.ReadKey().Key == ConsoleKey.X)
-                //    game.isGameActive = false;
 
                 //game.changeQuestion(game.roundNumber); // Zamiana pytania
                 //game.fiftyFifty(game.roundNumber); // Pół na pół
-                showPrizes(roundNumber);
 
                 string answer="";
 
                 string prompt = questions[roundNumber].question;
                 string[] options = {$"{questions[roundNumber].answerA}", $"{questions[roundNumber].answerB}"
-                        ,$"{questions[roundNumber].answerC}",$"{questions[roundNumber].answerD}" };
+                        ,$"{questions[roundNumber].answerC}",$"{questions[roundNumber].answerD}"
+                        ,$"Zakończ grę na pytaniu {roundNumber}"};
                 Menu answersMenu = new Menu(prompt, options);
-                int selectedIndex = answersMenu.Run(1);
-
+                int selectedIndex = answersMenu.Run(0);
+                
                 switch (selectedIndex)
                 {
                     case 0:
@@ -254,8 +245,19 @@ namespace Milionerzy
                     case 3:
                         answer = "d";
                         break;
-                }
+                    case 4:
+                        isGameActive=false;
+                        winnerPrize(roundNumber, isGameActive);
+                        Console.WriteLine("Wciśnij dowolny przycisk aby kontynuować.");
+                        Console.ReadKey();
+                        RunMainMenu();
+                        break;
+                    case 5:
 
+                        break;
+                }
+                
+                
                 //Console.WriteLine("Pytanie numer {0}", roundNumber);
                 //Console.WriteLine(questions[roundNumber].question);
                 //Console.Write(questions[roundNumber].answerA + "\t\t");
@@ -270,6 +272,8 @@ namespace Milionerzy
                 {
                     Console.WriteLine("Gratulacje dobra odpowiedź!");
                     Console.WriteLine("Twój stan konta to:{0}", Prizes[roundNumber]);
+                    showPrizes(roundNumber);
+                    Console.ReadKey();  
                 }
                 else
                 {
@@ -279,6 +283,7 @@ namespace Milionerzy
                     var winnings=winnerPrize(roundNumber, isGameActive);
                     saveResult(winnings);
                     isGameActive = false;
+                    
                 }
                 if (roundNumber == 12)
                 {
@@ -358,7 +363,7 @@ namespace Milionerzy
         {
             List<Question> questionList = new List<Question>();
 
-            using (StreamReader sr = new StreamReader(questionFileName))
+            using (StreamReader sr = new StreamReader(questionFileName,Encoding.UTF8))
             {
                 int i = 0, questionNumber = -1;
                 string line;
