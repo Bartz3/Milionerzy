@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,7 +14,6 @@ namespace Milionerzy
         private string resultsFileName { get; set; } = "results.txt"; // Name of file with questions; deafult - easy.txt
 
         public string playerName { get; set; }
-        private int difficultyLevel { get; set; } = 0;
         public List<Question> questions { get; set; } // List of questions
         public int roundNumber { get; set; } =0; // Number of round         
        
@@ -50,19 +50,172 @@ namespace Milionerzy
             Console.SetCursorPosition((Console.WindowWidth - s.Length) / 2, Console.CursorTop);
             Console.WriteLine(s);
         }
-        public Dictionary<int, string> Prizes { get { return prizes; } }
-        public Game()
+        private Dictionary<int, string> Prizes { get { return prizes; } }
+        private void difficultyLevelVoid(int lv)
         {
-            if (difficultyLevel == 0) questionFileName = "easy.txt";
-            else if (difficultyLevel == 1) questionFileName = "medium.txt";
-            else if (difficultyLevel == 2) questionFileName = "hard.txt";
+            switch (lv)
+            {
+                case 0: questionFileName = "easy.txt";
+                    break;
+                case 1:
+                    questionFileName = "medium.txt";
+                    break;
+                case 2:
+                    questionFileName = "hard.txt";
+                    break;
+
+            }
         }
         public void Start()
-        {         
+        {
+            SoundPlayer intro = new SoundPlayer("intro.wav");
+            intro.Load();
+            intro.Play();
             RunMainMenu();
+        }
+        private void End()
+        {
+            SoundPlayer outro = new SoundPlayer("outro.wav");
+            outro.Load();
+            outro.Play();
+            string won=winnerPrize(roundNumber-1, isGameActive);
+            show($"Gratulacje wygrałeś {won}");
+        }
+        private void preGameDisplay()
+        {
+            Console.Clear();
+            Console.WriteLine(logo);
+            Console.WriteLine("\n\n");
+            show("Witaj w grze Milionerzy!\n");
+            show("Podaj swój nick: ");
+            Console.SetCursorPosition((Console.WindowWidth) / 2, Console.CursorTop);
+            playerName = Console.ReadLine();
+            show($"Witaj " + playerName + ", przed Tobą 13 pytań w drodze do miliona.");
+            show("Powodzenia!");
+            roundNumber = 0;
+            Console.ReadKey(true);
+
+            questions = readQuestions();
+            isGameActive = true;
 
         }
-        public void RunMainMenu()
+        private string questionMethod()
+        {
+            string answer = null; string prompt,prompt2;
+            if (roundNumber==0) prompt2 = $"Stan konta: (-/{Prizes[12]})";
+            else prompt2 = $"Stan konta:({Prizes[roundNumber-1]}/{Prizes[12]})";           
+             prompt = questions[roundNumber].question ;
+
+            string[] options = {$"{questions[roundNumber].answerA}", $"{questions[roundNumber].answerB}"
+                        ,$"{questions[roundNumber].answerC}",$"{questions[roundNumber].answerD}"
+                        ,$"{(fiftyFiftyBool ? "Koło 50/50" : "Koło 50/50 nieaktywne")}",
+            $"{(changeQuestionBool ? "Zamiana pytania" : "Zamiana pytania nie możliwa.")}",
+           $"{(askAudienceBool ? "Pytanie do publiczności" : "Pytanie do publiczności nie możliwe.")}"
+            ,$"Zakończ grę na pytaniu {roundNumber}"};
+            Menu answersMenu = new Menu(prompt2,prompt, options);
+            int selectedIndex = answersMenu.Run(1);
+            
+            switch (selectedIndex)
+            {
+                case 0:
+                    answer = "a";
+                    break;
+                case 1:
+                    answer = "b";
+                    break;
+                case 2:
+                    answer = "c";
+                    break;
+                case 3:
+                    answer = "d";
+                    break;
+                case 4:
+                    fiftyFifty(roundNumber);
+                    break;
+                case 5:
+                    changeQuestion(roundNumber);
+                    
+                    break;
+                case 6:              
+                    askAudience(roundNumber);
+                    
+                    break;
+                case 7:
+                    isGameActive = false;
+                    //saveResult(winnerPrize(roundNumber, isGameActive));
+
+                    //winnerPrize(roundNumber, isGameActive);
+                    End();
+                    show("Wciśnij dowolny przycisk aby kontynuować.");
+                    resetGame();
+                    Console.ReadKey();
+                    RunMainMenu();
+                    break;
+
+            }
+            return answer;
+
+        }
+        public void startGame()
+        {
+            preGameDisplay();
+            string answer;
+            while (isGameActive && roundNumber < 13)
+            {
+
+                answer = questionMethod();
+                while (answer == null) answer = questionMethod();
+
+                if (questions[roundNumber].isAnswerCorrect(answer))
+                {
+                    if (roundNumber == 2 || roundNumber == 7)
+                    {
+                        show("Gratulacje dobra odpowiedź! Uzyskałeś próg gwarantowany!");
+                        show($"Twój stan konta to:{Prizes[roundNumber]}");
+                    }
+                    else
+                    {
+                        show("Gratulacje dobra odpowiedź!");
+                        show($"Twój stan konta to:{Prizes[roundNumber]}");
+                    }
+
+                    showPrizes(roundNumber);
+                    Console.ReadKey();
+                }
+                else
+                {
+                    show($"Niestety, odpowiedź {answer} jest nieprawidłowa." +
+                        $" Prawidłowa odpowiedź to {questions[roundNumber].correctAnswer}. Zakończyłeś grę na pytaniu numer {roundNumber}.");
+                    SoundPlayer badAnswer = new SoundPlayer("badAnswer.wav");
+                    badAnswer.Load();
+                    badAnswer.Play();
+
+
+                    var winnings = winnerPrize(roundNumber, isGameActive);
+                    //saveResult(winnings);
+                    isGameActive = false;
+
+                }
+                if (roundNumber == 12)
+                {
+
+                    saveResult(prizes.GetValueOrDefault(12));
+                    show($"Gratulacje {playerName} wygrałeś w grze Milionerzy!");
+                    isGameActive = false;
+                }
+                roundNumber++;
+                //gameLogic(answer);
+
+            }
+            isGameActive = false;
+            resetGame();
+
+            show("Naciśnij dowolny przycisk aby przejść do głównego menu...");
+
+            Console.ReadKey(true);
+            RunMainMenu();
+        }
+        private void RunMainMenu()
         {
             string[] options = { "Nowa gra", "Ustawienia", "Ostatnie wyniki", "Wyjście" };
             Menu mainMenu = new Menu(logo, options);
@@ -92,24 +245,25 @@ namespace Milionerzy
             string[] options = { "1. Łatwy", "2. Średni", "3. Trudny", "Wróć do menu" };
 
             Menu levelMenu = new Menu(prompt, options);
-            int selectedIndex = levelMenu.Run(0);
+            int selectedIndex = levelMenu.Run(1);
 
             switch (selectedIndex)
             {
                 case 0:
-                    difficultyLevel = 0;
-                    Console.WriteLine("Wybrałeś poziom łatwy."); Console.ReadKey(true);
+                    difficultyLevelVoid(0);
+                    show("Wybrałeś poziom łatwy."); Console.ReadKey(true);
                     RunMainMenu();
                     break;
                 case 1:
-                    difficultyLevel = 1;
-                    Console.WriteLine("Wybrałeś poziom średni."); Console.ReadKey(true);
+                    difficultyLevelVoid(1);
+                    show("Wybrałeś poziom średni."); Console.ReadKey(true);
                     RunMainMenu();
 
                     break;
                 case 2:
-                    Console.WriteLine("Wybrałeś poziom trudny.");
-                    difficultyLevel = 2; Console.ReadKey(true);
+                    show("Wybrałeś poziom trudny.");
+                    difficultyLevelVoid(2);
+                    Console.ReadKey(true);
                     RunMainMenu();
                     break;
                 case 3:
@@ -126,6 +280,12 @@ namespace Milionerzy
             Console.WriteLine(logo);
             show("Do następnego razu!");
             Environment.Exit(0);
+        }
+        private void resetGame()
+        {
+            askAudienceBool = true;
+            changeQuestionBool = true;
+            fiftyFiftyBool = true;
         }
         private void showLastResults()
         {
@@ -159,34 +319,36 @@ namespace Milionerzy
                 if (item.Key == qNumber)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("{0}. {1}", item.Key, item.Value);
+                    show($"{item.Key}. {item.Value}");
                     Console.ForegroundColor = ConsoleColor.White;
                 }
                 else if(item.Key==2 || item.Key == 7)
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("{0}. {1}", item.Key, item.Value);
+                    show($"{item.Key}. {item.Value}");
                     Console.ForegroundColor = ConsoleColor.White;
                 }
-                else Console.WriteLine("{0}. {1}", item.Key, item.Value);
+                else show($"{item.Key}. {item.Value}");
             }
-            //Console.WriteLine("{0,-20} {1,20}", "Finished!", "[ok]");
         }
-        public string winnerPrize (int qNumber,bool activeGame)
+        private string winnerPrize (int qNumber,bool activeGame)
         {
             if (qNumber < 2 && activeGame)
             {
                 show("Niestety nie udało Ci się wygrać :(");
+                saveResult("0zł");
                 return "0zł";
             }
             else if (qNumber >= 2 && qNumber < 7 && activeGame)
             {
                 show("Wygrałeś 1000zł!");
+                saveResult("1000zł");
                 return "1000zł";
             }
             else if (qNumber >= 7 && activeGame)
             {
                 show("Wygrałeś 40 000zł!");
+                saveResult("40 000zł");
                 return "40 000zł";
             }
             else if (!activeGame)
@@ -195,122 +357,70 @@ namespace Milionerzy
                 {
                     if (item.Key == qNumber)
                     {
-                        show($"Gratulacje wygrałeś {item.Value}");
+                        
+                        saveResult(item.Value.ToString());
                         return item.Value;
                     }
                 }
             }
             return "0zł";
-        }
-
-        public void startGame()
-        {
-            //Console.Clear();
-            Console.WriteLine("Witaj w grze Milionerzy!\nPodaj swój nick: ");
-            playerName = Console.ReadLine();
-            Console.WriteLine("Drogi " + playerName + " GL HF");
-            roundNumber = 0;
-            Console.ReadKey(true);
-
-            questions = readQuestions();
-            isGameActive = true;
-
-  
-            while (isGameActive && roundNumber < 13)
-            {
-
-                //game.changeQuestion(game.roundNumber); // Zamiana pytania
-                //game.fiftyFifty(game.roundNumber); // Pół na pół
-
-                string answer="";
-
-                string prompt = questions[roundNumber].question;
-                string[] options = {$"{questions[roundNumber].answerA}", $"{questions[roundNumber].answerB}"
-                        ,$"{questions[roundNumber].answerC}",$"{questions[roundNumber].answerD}"
-                        ,$"Zakończ grę na pytaniu {roundNumber}"};
-                Menu answersMenu = new Menu(prompt, options);
-                int selectedIndex = answersMenu.Run(0);
-                
-                switch (selectedIndex)
-                {
-                    case 0:
-                        answer = "a";
-                        break;
-                    case 1:
-                        answer = "b";
-                        break;
-                    case 2:
-                        answer = "c";
-                        break;
-                    case 3:
-                        answer = "d";
-                        break;
-                    case 4:
-                        isGameActive=false;
-                        winnerPrize(roundNumber, isGameActive);
-                        Console.WriteLine("Wciśnij dowolny przycisk aby kontynuować.");
-                        Console.ReadKey();
-                        RunMainMenu();
-                        break;
-                    case 5:
-
-                        break;
-                }
-                
-                
-                //Console.WriteLine("Pytanie numer {0}", roundNumber);
-                //Console.WriteLine(questions[roundNumber].question);
-                //Console.Write(questions[roundNumber].answerA + "\t\t");
-                //Console.WriteLine(questions[roundNumber].answerB);
-                //Console.Write(questions[roundNumber].answerC + "\t\t");
-                //Console.WriteLine(questions[roundNumber].answerD);
-
-                //Console.WriteLine("Podaj odpowiedź:");
-                //answer = Console.ReadLine();
-
-                if (questions[roundNumber].isAnswerCorrect(answer))
-                {
-                    Console.WriteLine("Gratulacje dobra odpowiedź!");
-                    Console.WriteLine("Twój stan konta to:{0}", Prizes[roundNumber]);
-                    showPrizes(roundNumber);
-                    Console.ReadKey();  
-                }
-                else
-                {
-                    Console.WriteLine("Niestety, odpowiedź {0} jest nieprawidłowa.\n Prawidłowa " +
-                        "odpowiedź to {1}. Zakończyłeś grę na pytaniu numer {2}."
-                        , answer, questions[roundNumber].correctAnswer, roundNumber);
-                    var winnings=winnerPrize(roundNumber, isGameActive);
-                    saveResult(winnings);
-                    isGameActive = false;
-                    
-                }
-                if (roundNumber == 12)
-                {
-                    saveResult("1 000 000 zł");
-                    Console.WriteLine("Gratulacje wygrałeś w grze Milionerzy!");
-                    isGameActive = false;
-                }
-                roundNumber++;
-            }
-            isGameActive = false;
-
-            show("Naciśnij dowolny przycisk aby przejść do głównego menu...");
-
-            Console.ReadKey(true);
-            RunMainMenu();
-        }
-       
+        }    
      
         public void askAudience(int qNumber)
         {
+            Random rand = new Random();
+            List<int> percents = new List<int>();
+            int goodAnswerPercent = 0, percent1 = 0, percent2 = 0, percent3 = 0,cem=100;
+            bool isUsed = false;
             if (askAudienceBool)
             {
+                string correctA = questions[qNumber].correctAnswer;
+                if (qNumber < 9) goodAnswerPercent = rand.Next(50, 70);
+                else goodAnswerPercent = rand.Next(20, 50);
 
+                cem -= goodAnswerPercent;
+
+                percent1 = rand.Next(0, cem);
+                cem -= percent1;
+
+                percent2 = rand.Next(0, cem);
+                cem -= percent2;
+
+                percent3 = cem;
+
+                if (questions[qNumber].answerA.Substring(0, 1) == correctA)
+                {
+                    questions[qNumber].answerA = questions[qNumber].answerA+" " +goodAnswerPercent.ToString()+"%";
+                    questions[qNumber].answerB = questions[qNumber].answerB+" " +percent1.ToString()+"%";
+                    questions[qNumber].answerC = questions[qNumber].answerC+" " +percent2.ToString()+"%";
+                    questions[qNumber].answerD = questions[qNumber].answerD+" " +percent3.ToString()+"%";
+                }
+                if (questions[qNumber].answerB.Substring(0, 1) == correctA)
+                {
+                    questions[qNumber].answerB = questions[qNumber].answerB + " " + goodAnswerPercent.ToString() + "%";
+                    questions[qNumber].answerA = questions[qNumber].answerA + " " + percent1.ToString() + "%";
+                    questions[qNumber].answerC = questions[qNumber].answerC + " " + percent2.ToString() + "%";
+                    questions[qNumber].answerD = questions[qNumber].answerD + " " + percent3.ToString() + "%";
+                }
+                if (questions[qNumber].answerC.Substring(0, 1) == correctA)
+                {
+                    questions[qNumber].answerC =questions[qNumber].answerC + " " + goodAnswerPercent.ToString() + "%";
+                    questions[qNumber].answerA = questions[qNumber].answerA + " " + percent1.ToString() + "%";
+                    questions[qNumber].answerB = questions[qNumber].answerB + " " + percent2.ToString() + "%";
+                    questions[qNumber].answerD = questions[qNumber].answerD + " " + percent3.ToString() + "%";
+                }
+                if (questions[qNumber].answerD.Substring(0, 1) == correctA)
+                {
+                    questions[qNumber].answerD = questions[qNumber].answerD + " " + goodAnswerPercent.ToString() + "%";
+                    questions[qNumber].answerA = questions[qNumber].answerA + " " + percent1.ToString() + "%";
+                    questions[qNumber].answerB = questions[qNumber].answerB + " " + percent2.ToString() + "%";
+                    questions[qNumber].answerC = questions[qNumber].answerC + " " + percent2.ToString() + "%";
+
+                }
                 askAudienceBool = false;
             }
         }
-        public void fiftyFifty(int qNumber) // Pierwsze koło ratunkowe 50/50
+        private void fiftyFifty(int qNumber) // Pierwsze koło ratunkowe 50/50
         {
             if (fiftyFiftyBool)
             {
@@ -319,29 +429,29 @@ namespace Milionerzy
 
                 if (questions[qNumber].answerA.Substring(0, 1) != correctA && deletedAnswers < 2)
                 {
-                    questions[qNumber].answerA += "XXX";
+                    questions[qNumber].answerA = "XXX";
                     deletedAnswers++;
                 }
                 if (questions[qNumber].answerB.Substring(0, 1) != correctA && deletedAnswers < 2)
                 {
-                    questions[qNumber].answerB += "XXX";
+                    questions[qNumber].answerB = "XXX";
                     deletedAnswers++;
                 }
                 if (questions[qNumber].answerC.Substring(0, 1) != correctA && deletedAnswers < 2)
                 {
-                    questions[qNumber].answerC += "XXX";
+                    questions[qNumber].answerC = "XXX";
                     deletedAnswers++;
                 }
                 if (questions[qNumber].answerD.Substring(0, 1) != correctA && deletedAnswers < 2)
                 {
-                    questions[qNumber].answerD += "XXX";
+                    questions[qNumber].answerD = "XXX";
                     deletedAnswers++;
                 }
                 fiftyFiftyBool = false;
             }
 
         }
-        public void changeQuestion(int qNumber)
+        private void changeQuestion(int qNumber)
         {
             if (changeQuestionBool)
             {
@@ -355,11 +465,9 @@ namespace Milionerzy
 
                 changeQuestionBool = false;
             }
-
         }
-        
  
-        public List<Question> readQuestions()
+        private List<Question> readQuestions()
         {
             List<Question> questionList = new List<Question>();
 

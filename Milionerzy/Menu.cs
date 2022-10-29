@@ -11,10 +11,18 @@ namespace Milionerzy
         private int SelectedIndex;
         private string[] Options;
         private string Prompt;
+        private string Prompt2;
 
         public Menu(string prompt, string[] options)
         {
             this.Prompt = prompt;
+            this.Options = options;
+            SelectedIndex = 0;
+        }
+        public Menu(string prompt,string prompt2, string[] options)
+        {
+            this.Prompt = prompt;
+            this.Prompt2 = prompt2;
             this.Options = options;
             SelectedIndex = 0;
         }
@@ -24,14 +32,13 @@ namespace Milionerzy
             ConsoleKey keyPressed;
             do
             {
-                
+                Console.Clear();
                 if(option == 0)
                 {
-                    Console.Clear();
                     DisplayOptions();
                 }
-                if(option==1)
-                    DisplayQuestions();
+                if (option == 1) {DisplayQuestions(); }
+                    
 
                 ConsoleKeyInfo keyInfo = Console.ReadKey(true);
                 keyPressed = keyInfo.Key;
@@ -76,9 +83,13 @@ namespace Milionerzy
             }
             Console.ResetColor();
         }
+    
         private void DisplayQuestions()
         {
+
+            //Console.WriteLine(Prompt);
             show(Prompt);
+            show(Prompt2);
             for (int i = 0; i < Options.Length; i++)
             {
                 string currentOption = Options[i];
@@ -94,6 +105,7 @@ namespace Milionerzy
                     prefix = " ";
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.BackgroundColor = ConsoleColor.Black;
+
                 }
                 show($"{prefix}{currentOption}");
             }
@@ -104,8 +116,12 @@ namespace Milionerzy
 
         void show(string s)
         {
-            Console.SetCursorPosition((Console.WindowWidth - s.Length) / 2, Console.CursorTop);
-            Console.WriteLine(s);
+
+                Console.SetCursorPosition((Console.WindowWidth - s.Length) / 2, Console.CursorTop);
+                Console.WriteLine(s);
+            
+     
         }
+
     }
 }
