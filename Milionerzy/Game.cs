@@ -28,6 +28,7 @@ namespace Milionerzy
             |  |\/|  | |  | |  |     |  | |  |  |  | |  . `  | |   __|  |      /       /  /      \_    _/   
             |  |  |  | |  | |  `----.|  | |  `--'  | |  |\   | |  |____ |  |\  \----. /  /----.    |  |     
             |__|  |__| |__| |_______||__|  \______/  |__| \__| |_______|| _| `._____|/________|    |__|    " + "\n";
+        
 
         private Dictionary<int, string> prizes = new Dictionary<int, string>()
         {
@@ -79,17 +80,20 @@ namespace Milionerzy
             outro.Load();
             outro.Play();
             string won=winnerPrize(roundNumber-1, isGameActive);
-            show($"Gratulacje wygrałeś {won}");
+            show($"Gratulacje {playerName} wygrałeś {won}");
+
         }
         private void preGameDisplay()
         {
             Console.Clear();
             Console.WriteLine(logo);
-            Console.WriteLine("\n\n");
+            Console.WriteLine("\n");
             show("Witaj w grze Milionerzy!\n");
             show("Podaj swój nick: ");
-            Console.SetCursorPosition((Console.WindowWidth) / 2, Console.CursorTop);
+            Console.SetCursorPosition((Console.WindowWidth) / 2 +8, Console.CursorTop -1);
             playerName = Console.ReadLine();
+            
+            if (playerName == "") playerName = "anonim";
             show($"Witaj " + playerName + ", przed Tobą 13 pytań w drodze do miliona.");
             show("Powodzenia!");
             roundNumber = 0;
@@ -165,9 +169,10 @@ namespace Milionerzy
 
                 answer = questionMethod();
                 while (answer == null) answer = questionMethod();
-
+                
                 if (questions[roundNumber].isAnswerCorrect(answer))
                 {
+                    //Console.WriteLine("\n");
                     if (roundNumber == 2 || roundNumber == 7)
                     {
                         show("Gratulacje dobra odpowiedź! Uzyskałeś próg gwarantowany!");
@@ -184,6 +189,7 @@ namespace Milionerzy
                 }
                 else
                 {
+                    //Console.WriteLine("\n");
                     show($"Niestety, odpowiedź {answer} jest nieprawidłowa." +
                         $" Prawidłowa odpowiedź to {questions[roundNumber].correctAnswer}. Zakończyłeś grę na pytaniu numer {roundNumber}.");
                     SoundPlayer badAnswer = new SoundPlayer("badAnswer.wav");
@@ -200,7 +206,20 @@ namespace Milionerzy
                 {
 
                     saveResult(prizes.GetValueOrDefault(12));
+                    Console.WriteLine(@"
+                   
+                                     __        __                                 _ 
+                                     \ \      / /   _  __ _ _ __ __ _ _ __   __ _| |
+                                      \ \ /\ / / | | |/ _` | '__/ _` | '_ \ / _` | |
+                                       \ V  V /| |_| | (_| | | | (_| | | | | (_| |_|
+                                        \_/\_/  \__, |\__, |_|  \__,_|_| |_|\__,_(_)
+                                                |___/ |___/                         
+
+                    ");
                     show($"Gratulacje {playerName} wygrałeś w grze Milionerzy!");
+                    SoundPlayer outro = new SoundPlayer("outro.wav");
+                    outro.Load();
+                    outro.Play();
                     isGameActive = false;
                 }
                 roundNumber++;
@@ -504,8 +523,7 @@ namespace Milionerzy
                         default:
                             break;
                     }
-                    i++; i = i % 6;
-                    //Console.WriteLine(line);
+                    i++; i = i % 6;                   
                 }
             }
             return questionList;

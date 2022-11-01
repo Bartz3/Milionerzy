@@ -89,7 +89,8 @@ namespace Milionerzy
 
             //Console.WriteLine(Prompt);
             show(Prompt);
-            show(Prompt2);
+            if(Prompt2!=null)
+                show(Prompt2);
             for (int i = 0; i < Options.Length; i++)
             {
                 string currentOption = Options[i];
@@ -116,11 +117,9 @@ namespace Milionerzy
 
         void show(string s)
         {
-
                 Console.SetCursorPosition((Console.WindowWidth - s.Length) / 2, Console.CursorTop);
                 Console.WriteLine(s);
-            
-     
+   
         }
 
     }
