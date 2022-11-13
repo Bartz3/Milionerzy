@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Milionerzy;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,19 +14,55 @@ namespace MilionerzyGUI
 {
     public partial class MenuForm : Form
     {
+        Game game = new Game();
         public MenuForm()
         {
-            SoundPlayer intro = new SoundPlayer("intro.wav");
-            intro.Load();
-            intro.Play();
+            //SoundPlayer intro = new SoundPlayer("intro.wav");
+            //intro.Load();
+            //intro.Play();
             InitializeComponent();
+            Initialize();
+
+            menuPanel.Visible = false;
+            namePanel.Visible = false;
+            roundPanel.Visible = true;
+        }
+        public void Initialize()
+        {
+            
+             //ListViewItem item= new ListViewItem("itemjeden",0);
+            foreach (var prize in game.Prizes.Values.Reverse())
+            {
+                
+                //item.SubItems.Add(prize);
+                //if(prize=="40 000zł")prizesListView.Items.Contains()
+                prizesListView.Items.Add(prize);
+            }
+            //prizesListView.Items.Add(item);
+            Console.WriteLine("XD");
+            
         }
 
-        private void newGameButton_Click(object sender, EventArgs e)
+        private void goToNamePanel_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            RoundForm roundForm = new RoundForm();
-            roundForm.ShowDialog();
+            menuPanel.Hide();
+            namePanel.Visible = true;
         }
+
+
+        private void exitGameButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void goToGameButton_Click(object sender, EventArgs e)
+        {
+            namePanel.Hide();
+            game.playerName =nameTextBox.Text;
+            roundPanel.Visible = true;
+            game.isGameActive = true;
+            
+        }
+
     }
 }
