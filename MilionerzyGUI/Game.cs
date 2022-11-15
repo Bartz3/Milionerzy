@@ -23,6 +23,8 @@ namespace Milionerzy
         private bool fiftyFiftyBool { get; set; } = true; // First help bool
         private bool changeQuestionBool { get; set; } = true; // Second help bool
         private bool askAudienceBool { get; set; } = true; // Third help bool
+
+
         private string logo = @"
             .___  ___.  __   __       __    ______   .__   __.  _______ .______      ________  ____    ____ 
             |   \/   | |  | |  |     |  |  /  __  \  |  \ |  | |   ____||   _  \    |       /  \   \  /   / 
@@ -164,7 +166,7 @@ namespace Milionerzy
         }
         public void startGame()
         {
-            preGameDisplay();
+            //preGameDisplay();
             string answer;
             while (isGameActive && roundNumber < 13)
             {
@@ -488,7 +490,7 @@ namespace Milionerzy
             }
         }
  
-        private List<Question> readQuestions()
+        public List<Question> readQuestions()
         {
             List<Question> questionList = new List<Question>();
 

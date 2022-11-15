@@ -15,6 +15,8 @@ namespace MilionerzyGUI
     public partial class MenuForm : Form
     {
         Game game = new Game();
+        List<Question> gameQuestions; // Pytania
+        string answer; // Odpowiedź (a,b,c,d)
         public MenuForm()
         {
             //SoundPlayer intro = new SoundPlayer("intro.wav");
@@ -22,6 +24,7 @@ namespace MilionerzyGUI
             //intro.Play();
             InitializeComponent();
             Initialize();
+            
 
             menuPanel.Visible = false;
             namePanel.Visible = false;
@@ -29,7 +32,7 @@ namespace MilionerzyGUI
         }
         public void Initialize()
         {
-            
+            gameQuestions = game.readQuestions(); // Pobranie pytań do rozgrywki
              //ListViewItem item= new ListViewItem("itemjeden",0);
             foreach (var prize in game.Prizes.Values.Reverse())
             {
@@ -39,8 +42,13 @@ namespace MilionerzyGUI
                 prizesListView.Items.Add(prize);
             }
             //prizesListView.Items.Add(item);
-            Console.WriteLine("XD");
-            
+            //game.startGame();
+            questionLabel.Text = gameQuestions[0].question;
+            answerAButton.Text = gameQuestions[0].answerA;
+            answerBButton.Text = gameQuestions[0].answerB;
+            answerCButton.Text = gameQuestions[0].answerC;
+            answerDButton.Text = gameQuestions[0].answerD;
+
         }
 
         private void goToNamePanel_Click(object sender, EventArgs e)
@@ -59,10 +67,39 @@ namespace MilionerzyGUI
         {
             namePanel.Hide();
             game.playerName =nameTextBox.Text;
+            if (game.playerName == null) game.playerName = "anonim";
+            game.roundNumber = 0;
             roundPanel.Visible = true;
             game.isGameActive = true;
+
+
+
             
         }
 
+        private void answerAButton_Click(object sender, EventArgs e)
+        {
+            answer = "a";   
+        }
+
+        private void answerBButton_Click(object sender, EventArgs e)
+        {
+            answer = "b";
+        }
+
+        private void answerCButton_Click(object sender, EventArgs e)
+        {
+            answer = "c";
+        }
+
+        private void answerDButton_Click(object sender, EventArgs e)
+        {
+            answer = "d";
+        }
+
+        private void guna2CustomGradientPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
