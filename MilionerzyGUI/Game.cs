@@ -110,57 +110,57 @@ namespace Milionerzy
         private string questionMethod()
         {
             string answer = null; string prompt,prompt2;
-            if (roundNumber==0) prompt2 = $"Stan konta: (-/{Prizes[12]})";
-            else prompt2 = $"Stan konta:({Prizes[roundNumber-1]}/{Prizes[12]})";           
-             prompt = questions[roundNumber].question ;
+            //if (roundNumber==0) prompt2 = $"Stan konta: (-/{Prizes[12]})";
+            //else prompt2 = $"Stan konta:({Prizes[roundNumber-1]}/{Prizes[12]})";           
+            // prompt = questions[roundNumber].question ;
 
-            string[] options = {$"{questions[roundNumber].answerA}", $"{questions[roundNumber].answerB}"
-                        ,$"{questions[roundNumber].answerC}",$"{questions[roundNumber].answerD}"
-                        ,$"{(fiftyFiftyBool ? "Koło 50/50" : "Koło 50/50 nieaktywne")}",
-            $"{(changeQuestionBool ? "Zamiana pytania" : "Zamiana pytania nie możliwa.")}",
-           $"{(askAudienceBool ? "Pytanie do publiczności" : "Pytanie do publiczności nie możliwe.")}"
-            ,$"Zakończ grę na pytaniu {roundNumber}"};
-            Menu answersMenu = new Menu(prompt2,prompt, options);
-            int selectedIndex = answersMenu.Run(1);
+           // string[] options = {$"{questions[roundNumber].answerA}", $"{questions[roundNumber].answerB}"
+           //             ,$"{questions[roundNumber].answerC}",$"{questions[roundNumber].answerD}"
+           //             ,$"{(fiftyFiftyBool ? "Koło 50/50" : "Koło 50/50 nieaktywne")}",
+           // $"{(changeQuestionBool ? "Zamiana pytania" : "Zamiana pytania nie możliwa.")}",
+           //$"{(askAudienceBool ? "Pytanie do publiczności" : "Pytanie do publiczności nie możliwe.")}"
+           // ,$"Zakończ grę na pytaniu {roundNumber}"};
+            //Menu answersMenu = new Menu(prompt2,prompt, options);
+            //int selectedIndex = answersMenu.Run(1);
             
-            switch (selectedIndex)
-            {
-                case 0:
-                    answer = "a";
-                    break;
-                case 1:
-                    answer = "b";
-                    break;
-                case 2:
-                    answer = "c";
-                    break;
-                case 3:
-                    answer = "d";
-                    break;
-                case 4:
-                    fiftyFifty(roundNumber);
-                    break;
-                case 5:
-                    changeQuestion(roundNumber);
+            //switch (selectedIndex)
+            //{
+            //    case 0:
+            //        answer = "a";
+            //        break;
+            //    case 1:
+            //        answer = "b";
+            //        break;
+            //    case 2:
+            //        answer = "c";
+            //        break;
+            //    case 3:
+            //        answer = "d";
+            //        break;
+            //    case 4:
+            //        fiftyFifty(roundNumber);
+            //        break;
+            //    case 5:
+            //        changeQuestion(roundNumber);
                     
-                    break;
-                case 6:              
-                    askAudience(roundNumber);
+            //        break;
+            //    case 6:              
+            //        askAudience(roundNumber);
                     
-                    break;
-                case 7:
-                    isGameActive = false;
-                    //saveResult(winnerPrize(roundNumber, isGameActive));
+            //        break;
+            //    case 7:
+            //        isGameActive = false;
+            //        //saveResult(winnerPrize(roundNumber, isGameActive));
 
-                    //winnerPrize(roundNumber, isGameActive);
-                    End();
-                    show("Wciśnij dowolny przycisk aby kontynuować.");
-                    resetGame();
-                    Console.ReadKey();
-                    RunMainMenu();
-                    break;
+            //        //winnerPrize(roundNumber, isGameActive);
+            //        End();
+            //        show("Wciśnij dowolny przycisk aby kontynuować.");
+            //        resetGame();
+            //        Console.ReadKey();
+            //        RunMainMenu();
+            //        break;
 
-            }
+            //}
             return answer;
 
         }
@@ -179,23 +179,23 @@ namespace Milionerzy
                     //Console.WriteLine("\n");
                     if (roundNumber == 2 || roundNumber == 7)
                     {
-                        show("Gratulacje dobra odpowiedź! Uzyskałeś próg gwarantowany!");
-                        show($"Twój stan konta to:{Prizes[roundNumber]}");
+                        //show("Gratulacje dobra odpowiedź! Uzyskałeś próg gwarantowany!");
+                        //show($"Twój stan konta to:{Prizes[roundNumber]}");
                     }
                     else
                     {
-                        show("Gratulacje dobra odpowiedź!");
-                        show($"Twój stan konta to:{Prizes[roundNumber]}");
+                        //show("Gratulacje dobra odpowiedź!");
+                        //show($"Twój stan konta to:{Prizes[roundNumber]}");
                     }
 
-                    showPrizes(roundNumber);
-                    Console.ReadKey();
+                    //showPrizes(roundNumber);
+                    //Console.ReadKey();
                 }
                 else
                 {
                     //Console.WriteLine("\n");
-                    show($"Niestety, odpowiedź {answer} jest nieprawidłowa." +
-                        $" Prawidłowa odpowiedź to {questions[roundNumber].correctAnswer}. Zakończyłeś grę na pytaniu numer {roundNumber}.");
+                    //show($"Niestety, odpowiedź {answer} jest nieprawidłowa." +
+                    //    $" Prawidłowa odpowiedź to {questions[roundNumber].correctAnswer}. Zakończyłeś grę na pytaniu numer {roundNumber}.");
                     SoundPlayer badAnswer = new SoundPlayer("badAnswer.wav");
                     badAnswer.Load();
                     badAnswer.Play();
@@ -210,17 +210,17 @@ namespace Milionerzy
                 {
 
                     //saveResult(prizes.GetValueOrDefault(12));
-                    Console.WriteLine(@"
+                    //Console.WriteLine(@"
                    
-                                     __        __                                 _ 
-                                     \ \      / /   _  __ _ _ __ __ _ _ __   __ _| |
-                                      \ \ /\ / / | | |/ _` | '__/ _` | '_ \ / _` | |
-                                       \ V  V /| |_| | (_| | | | (_| | | | | (_| |_|
-                                        \_/\_/  \__, |\__, |_|  \__,_|_| |_|\__,_(_)
-                                                |___/ |___/                         
+                    //                 __        __                                 _ 
+                    //                 \ \      / /   _  __ _ _ __ __ _ _ __   __ _| |
+                    //                  \ \ /\ / / | | |/ _` | '__/ _` | '_ \ / _` | |
+                    //                   \ V  V /| |_| | (_| | | | (_| | | | | (_| |_|
+                    //                    \_/\_/  \__, |\__, |_|  \__,_|_| |_|\__,_(_)
+                    //                            |___/ |___/                         
 
-                    ");
-                    show($"Gratulacje {playerName} wygrałeś w grze Milionerzy!");
+                    //");
+                    //show($"Gratulacje {playerName} wygrałeś w grze Milionerzy!");
                     SoundPlayer outro = new SoundPlayer("outro.wav");
                     outro.Load();
                     outro.Play();
@@ -233,10 +233,10 @@ namespace Milionerzy
             isGameActive = false;
             resetGame();
 
-            show("Naciśnij dowolny przycisk aby przejść do głównego menu...");
+            //show("Naciśnij dowolny przycisk aby przejść do głównego menu...");
 
             Console.ReadKey(true);
-            RunMainMenu();
+            //RunMainMenu();
         }
         private void RunMainMenu()
         {
@@ -304,7 +304,7 @@ namespace Milionerzy
             show("Do następnego razu!");
             Environment.Exit(0);
         }
-        private void resetGame()
+        public void resetGame()
         {
             askAudienceBool = true;
             changeQuestionBool = true;
@@ -324,7 +324,7 @@ namespace Milionerzy
             Console.ReadKey(true);
             RunMainMenu();
         }
-        private void saveResult(string winnings)
+        public void saveResult(string winnings)
         {
             string currentContent = String.Empty;
             if (File.Exists(resultsFileName))
@@ -354,23 +354,24 @@ namespace Milionerzy
                 else show($"{item.Key}. {item.Value}");
             }
         }
-        private string winnerPrize (int qNumber,bool activeGame)
+        public string winnerPrize (int qNumber,bool activeGame)
         {
+
             if (qNumber < 2 && activeGame)
             {
-                show("Niestety nie udało Ci się wygrać :(");
+                //show("Niestety nie udało Ci się wygrać :(");
                 saveResult("0zł");
                 return "0zł";
             }
             else if (qNumber >= 2 && qNumber < 7 && activeGame)
             {
-                show("Wygrałeś 1000zł!");
+                //show("Wygrałeś 1000zł!");
                 saveResult("1000zł");
                 return "1000zł";
             }
             else if (qNumber >= 7 && activeGame)
             {
-                show("Wygrałeś 40 000zł!");
+                //show("Wygrałeś 40 000zł!");
                 saveResult("40 000zł");
                 return "40 000zł";
             }
@@ -380,7 +381,7 @@ namespace Milionerzy
                 {
                     if (item.Key == qNumber)
                     {
-                        
+
                         saveResult(item.Value.ToString());
                         return item.Value;
                     }
