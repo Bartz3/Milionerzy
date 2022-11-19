@@ -42,12 +42,12 @@
             this.answerAButton = new Guna.UI2.WinForms.Guna2GradientButton();
             this.questionPanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.questionLabel = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.guna2CircleButton3 = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.guna2CircleButton2 = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.guna2GradientButton1 = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.rightToolsGroupBox = new System.Windows.Forms.GroupBox();
+            this.askAudienceButton = new Guna.UI2.WinForms.Guna2TileButton();
+            this.swapQuestionButton = new Guna.UI2.WinForms.Guna2TileButton();
+            this.fiftyButton = new Guna.UI2.WinForms.Guna2TileButton();
+            this.endGameButton = new Guna.UI2.WinForms.Guna2GradientButton();
             this.prizesListView = new System.Windows.Forms.ListView();
-            this.guna2CircleButton1 = new Guna.UI2.WinForms.Guna2CircleButton();
             this.namePanel = new System.Windows.Forms.Panel();
             this.goToGameButton = new Guna.UI2.WinForms.Guna2Button();
             this.nameTextBox = new Guna.UI2.WinForms.Guna2TextBox();
@@ -55,7 +55,7 @@
             this.menuPanel.SuspendLayout();
             this.roundPanel.SuspendLayout();
             this.questionPanel.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.rightToolsGroupBox.SuspendLayout();
             this.namePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -175,7 +175,7 @@
             this.roundPanel.Controls.Add(this.answerBButton);
             this.roundPanel.Controls.Add(this.answerAButton);
             this.roundPanel.Controls.Add(this.questionPanel);
-            this.roundPanel.Controls.Add(this.groupBox1);
+            this.roundPanel.Controls.Add(this.rightToolsGroupBox);
             this.roundPanel.Location = new System.Drawing.Point(22, 2);
             this.roundPanel.Name = "roundPanel";
             this.roundPanel.Size = new System.Drawing.Size(1024, 600);
@@ -192,13 +192,13 @@
             this.answerDButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.answerDButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.answerDButton.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.answerDButton.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.answerDButton.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.answerDButton.ForeColor = System.Drawing.Color.Yellow;
             this.answerDButton.Location = new System.Drawing.Point(492, 488);
             this.answerDButton.Name = "answerDButton";
             this.answerDButton.Size = new System.Drawing.Size(187, 65);
             this.answerDButton.TabIndex = 8;
-            this.answerDButton.Click += new System.EventHandler(this.answerDButton_Click);
+            this.answerDButton.Click += new System.EventHandler(this.checkAnswerEvent);
             // 
             // answerCButton
             // 
@@ -211,13 +211,13 @@
             this.answerCButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.answerCButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.answerCButton.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.answerCButton.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.answerCButton.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.answerCButton.ForeColor = System.Drawing.Color.Yellow;
             this.answerCButton.Location = new System.Drawing.Point(234, 488);
             this.answerCButton.Name = "answerCButton";
             this.answerCButton.Size = new System.Drawing.Size(187, 65);
             this.answerCButton.TabIndex = 7;
-            this.answerCButton.Click += new System.EventHandler(this.answerCButton_Click);
+            this.answerCButton.Click += new System.EventHandler(this.checkAnswerEvent);
             // 
             // answerBButton
             // 
@@ -230,13 +230,13 @@
             this.answerBButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.answerBButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.answerBButton.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.answerBButton.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.answerBButton.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.answerBButton.ForeColor = System.Drawing.Color.Yellow;
             this.answerBButton.Location = new System.Drawing.Point(492, 397);
             this.answerBButton.Name = "answerBButton";
             this.answerBButton.Size = new System.Drawing.Size(187, 65);
             this.answerBButton.TabIndex = 6;
-            this.answerBButton.Click += new System.EventHandler(this.answerBButton_Click);
+            this.answerBButton.Click += new System.EventHandler(this.checkAnswerEvent);
             // 
             // answerAButton
             // 
@@ -249,13 +249,13 @@
             this.answerAButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.answerAButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.answerAButton.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.answerAButton.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.answerAButton.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.answerAButton.ForeColor = System.Drawing.Color.Yellow;
             this.answerAButton.Location = new System.Drawing.Point(234, 397);
             this.answerAButton.Name = "answerAButton";
             this.answerAButton.Size = new System.Drawing.Size(187, 65);
             this.answerAButton.TabIndex = 5;
-            this.answerAButton.Click += new System.EventHandler(this.answerAButton_Click);
+            this.answerAButton.Click += new System.EventHandler(this.checkAnswerEvent);
             // 
             // questionPanel
             // 
@@ -267,7 +267,7 @@
             this.questionPanel.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.questionPanel.FillColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.questionPanel.FillColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.questionPanel.Location = new System.Drawing.Point(234, 184);
+            this.questionPanel.Location = new System.Drawing.Point(234, 182);
             this.questionPanel.Name = "questionPanel";
             this.questionPanel.Size = new System.Drawing.Size(445, 121);
             this.questionPanel.TabIndex = 3;
@@ -276,84 +276,115 @@
             // 
             this.questionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.questionLabel.ForeColor = System.Drawing.Color.Yellow;
-            this.questionLabel.Location = new System.Drawing.Point(28, 15);
+            this.questionLabel.Location = new System.Drawing.Point(35, 15);
             this.questionLabel.Name = "questionLabel";
             this.questionLabel.Size = new System.Drawing.Size(379, 90);
             this.questionLabel.TabIndex = 0;
             this.questionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // groupBox1
+            // rightToolsGroupBox
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.DarkBlue;
-            this.groupBox1.Controls.Add(this.guna2CircleButton3);
-            this.groupBox1.Controls.Add(this.guna2CircleButton2);
-            this.groupBox1.Controls.Add(this.guna2GradientButton1);
-            this.groupBox1.Controls.Add(this.prizesListView);
-            this.groupBox1.Controls.Add(this.guna2CircleButton1);
-            this.groupBox1.Location = new System.Drawing.Point(785, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(239, 600);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
+            this.rightToolsGroupBox.BackColor = System.Drawing.Color.MidnightBlue;
+            this.rightToolsGroupBox.Controls.Add(this.askAudienceButton);
+            this.rightToolsGroupBox.Controls.Add(this.swapQuestionButton);
+            this.rightToolsGroupBox.Controls.Add(this.fiftyButton);
+            this.rightToolsGroupBox.Controls.Add(this.endGameButton);
+            this.rightToolsGroupBox.Controls.Add(this.prizesListView);
+            this.rightToolsGroupBox.Location = new System.Drawing.Point(785, 0);
+            this.rightToolsGroupBox.Name = "rightToolsGroupBox";
+            this.rightToolsGroupBox.Size = new System.Drawing.Size(239, 600);
+            this.rightToolsGroupBox.TabIndex = 2;
+            this.rightToolsGroupBox.TabStop = false;
             // 
-            // guna2CircleButton3
+            // askAudienceButton
             // 
-            this.guna2CircleButton3.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2CircleButton3.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2CircleButton3.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2CircleButton3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2CircleButton3.FillColor = System.Drawing.Color.Transparent;
-            this.guna2CircleButton3.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2CircleButton3.ForeColor = System.Drawing.Color.White;
-            this.guna2CircleButton3.Image = ((System.Drawing.Image)(resources.GetObject("guna2CircleButton3.Image")));
-            this.guna2CircleButton3.ImageSize = new System.Drawing.Size(113, 106);
-            this.guna2CircleButton3.Location = new System.Drawing.Point(167, 19);
-            this.guna2CircleButton3.Name = "guna2CircleButton3";
-            this.guna2CircleButton3.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.guna2CircleButton3.Size = new System.Drawing.Size(69, 67);
-            this.guna2CircleButton3.TabIndex = 12;
+            this.askAudienceButton.AutoRoundedCorners = true;
+            this.askAudienceButton.BackColor = System.Drawing.Color.Transparent;
+            this.askAudienceButton.BorderRadius = 39;
+            this.askAudienceButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.askAudienceButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.askAudienceButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.askAudienceButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.askAudienceButton.FillColor = System.Drawing.Color.Transparent;
+            this.askAudienceButton.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.askAudienceButton.ForeColor = System.Drawing.Color.White;
+            this.askAudienceButton.Image = ((System.Drawing.Image)(resources.GetObject("askAudienceButton.Image")));
+            this.askAudienceButton.ImageSize = new System.Drawing.Size(80, 80);
+            this.askAudienceButton.Location = new System.Drawing.Point(153, 10);
+            this.askAudienceButton.Name = "askAudienceButton";
+            this.askAudienceButton.Size = new System.Drawing.Size(83, 80);
+            this.askAudienceButton.TabIndex = 12;
+            this.askAudienceButton.Tag = "ask";
+            this.askAudienceButton.Click += new System.EventHandler(this.helpButtonsEvent);
             // 
-            // guna2CircleButton2
+            // swapQuestionButton
             // 
-            this.guna2CircleButton2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2CircleButton2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2CircleButton2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2CircleButton2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2CircleButton2.FillColor = System.Drawing.Color.Transparent;
-            this.guna2CircleButton2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2CircleButton2.ForeColor = System.Drawing.Color.White;
-            this.guna2CircleButton2.Image = ((System.Drawing.Image)(resources.GetObject("guna2CircleButton2.Image")));
-            this.guna2CircleButton2.ImageSize = new System.Drawing.Size(113, 106);
-            this.guna2CircleButton2.Location = new System.Drawing.Point(90, 19);
-            this.guna2CircleButton2.Name = "guna2CircleButton2";
-            this.guna2CircleButton2.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.guna2CircleButton2.Size = new System.Drawing.Size(69, 67);
-            this.guna2CircleButton2.TabIndex = 11;
+            this.swapQuestionButton.AutoRoundedCorners = true;
+            this.swapQuestionButton.BackColor = System.Drawing.Color.Transparent;
+            this.swapQuestionButton.BorderRadius = 39;
+            this.swapQuestionButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.swapQuestionButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.swapQuestionButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.swapQuestionButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.swapQuestionButton.FillColor = System.Drawing.Color.Transparent;
+            this.swapQuestionButton.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.swapQuestionButton.ForeColor = System.Drawing.Color.White;
+            this.swapQuestionButton.Image = ((System.Drawing.Image)(resources.GetObject("swapQuestionButton.Image")));
+            this.swapQuestionButton.ImageSize = new System.Drawing.Size(80, 80);
+            this.swapQuestionButton.Location = new System.Drawing.Point(77, 10);
+            this.swapQuestionButton.Name = "swapQuestionButton";
+            this.swapQuestionButton.Size = new System.Drawing.Size(83, 80);
+            this.swapQuestionButton.TabIndex = 11;
+            this.swapQuestionButton.Tag = "swap";
+            this.swapQuestionButton.Click += new System.EventHandler(this.helpButtonsEvent);
             // 
-            // guna2GradientButton1
+            // fiftyButton
             // 
-            this.guna2GradientButton1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2GradientButton1.BorderRadius = 30;
-            this.guna2GradientButton1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2GradientButton1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2GradientButton1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2GradientButton1.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2GradientButton1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2GradientButton1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.guna2GradientButton1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.guna2GradientButton1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2GradientButton1.ForeColor = System.Drawing.Color.Yellow;
-            this.guna2GradientButton1.Location = new System.Drawing.Point(33, 131);
-            this.guna2GradientButton1.Name = "guna2GradientButton1";
-            this.guna2GradientButton1.Size = new System.Drawing.Size(164, 38);
-            this.guna2GradientButton1.TabIndex = 10;
-            this.guna2GradientButton1.Text = "Zakończ grę";
+            this.fiftyButton.AutoRoundedCorners = true;
+            this.fiftyButton.BackColor = System.Drawing.Color.Transparent;
+            this.fiftyButton.BorderRadius = 39;
+            this.fiftyButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.fiftyButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.fiftyButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.fiftyButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.fiftyButton.FillColor = System.Drawing.Color.Transparent;
+            this.fiftyButton.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.fiftyButton.ForeColor = System.Drawing.Color.White;
+            this.fiftyButton.Image = ((System.Drawing.Image)(resources.GetObject("fiftyButton.Image")));
+            this.fiftyButton.ImageSize = new System.Drawing.Size(80, 80);
+            this.fiftyButton.IndicateFocus = true;
+            this.fiftyButton.Location = new System.Drawing.Point(0, 10);
+            this.fiftyButton.Name = "fiftyButton";
+            this.fiftyButton.Size = new System.Drawing.Size(83, 80);
+            this.fiftyButton.TabIndex = 9;
+            this.fiftyButton.Tag = "50";
+            this.fiftyButton.Click += new System.EventHandler(this.helpButtonsEvent);
+            // 
+            // endGameButton
+            // 
+            this.endGameButton.BackColor = System.Drawing.Color.Transparent;
+            this.endGameButton.BorderRadius = 30;
+            this.endGameButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.endGameButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.endGameButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.endGameButton.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.endGameButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.endGameButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.endGameButton.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.endGameButton.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.endGameButton.ForeColor = System.Drawing.Color.Yellow;
+            this.endGameButton.Location = new System.Drawing.Point(35, 145);
+            this.endGameButton.Name = "endGameButton";
+            this.endGameButton.Size = new System.Drawing.Size(164, 38);
+            this.endGameButton.TabIndex = 10;
+            this.endGameButton.Text = "Zakończ grę";
+            this.endGameButton.Click += new System.EventHandler(this.endGameButton_Click);
             // 
             // prizesListView
             // 
-            this.prizesListView.BackColor = System.Drawing.Color.DarkBlue;
+            this.prizesListView.BackColor = System.Drawing.Color.MidnightBlue;
             this.prizesListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.prizesListView.ForeColor = System.Drawing.Color.Yellow;
+            this.prizesListView.ForeColor = System.Drawing.Color.White;
             this.prizesListView.HideSelection = false;
             this.prizesListView.Location = new System.Drawing.Point(0, 198);
             this.prizesListView.Margin = new System.Windows.Forms.Padding(0);
@@ -363,24 +394,6 @@
             this.prizesListView.TabIndex = 3;
             this.prizesListView.UseCompatibleStateImageBehavior = false;
             this.prizesListView.View = System.Windows.Forms.View.List;
-            // 
-            // guna2CircleButton1
-            // 
-            this.guna2CircleButton1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2CircleButton1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2CircleButton1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2CircleButton1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2CircleButton1.FillColor = System.Drawing.Color.Transparent;
-            this.guna2CircleButton1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2CircleButton1.ForeColor = System.Drawing.Color.White;
-            this.guna2CircleButton1.Image = ((System.Drawing.Image)(resources.GetObject("guna2CircleButton1.Image")));
-            this.guna2CircleButton1.ImageSize = new System.Drawing.Size(113, 106);
-            this.guna2CircleButton1.Location = new System.Drawing.Point(6, 19);
-            this.guna2CircleButton1.Name = "guna2CircleButton1";
-            this.guna2CircleButton1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.guna2CircleButton1.Size = new System.Drawing.Size(69, 67);
-            this.guna2CircleButton1.TabIndex = 0;
-            this.guna2CircleButton1.Click += new System.EventHandler(this.guna2CircleButton1_Click);
             // 
             // namePanel
             // 
@@ -445,9 +458,9 @@
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel1.Location = new System.Drawing.Point(452, 228);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(3, 2);
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(25, 15);
             this.guna2HtmlLabel1.TabIndex = 0;
-            this.guna2HtmlLabel1.Text = null;
+            this.guna2HtmlLabel1.Text = "xdxd";
             // 
             // MenuForm
             // 
@@ -464,7 +477,7 @@
             this.menuPanel.PerformLayout();
             this.roundPanel.ResumeLayout(false);
             this.questionPanel.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
+            this.rightToolsGroupBox.ResumeLayout(false);
             this.namePanel.ResumeLayout(false);
             this.namePanel.PerformLayout();
             this.ResumeLayout(false);
@@ -484,8 +497,7 @@
         private Guna.UI2.WinForms.Guna2Button goToLastResultButton;
         private Guna.UI2.WinForms.Guna2Button goToGameButton;
         private System.Windows.Forms.Label label2;
-        private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox rightToolsGroupBox;
         private System.Windows.Forms.ListView prizesListView;
         private Guna.UI2.WinForms.Guna2GradientButton answerAButton;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel questionPanel;
@@ -493,9 +505,10 @@
         private Guna.UI2.WinForms.Guna2GradientButton answerCButton;
         private Guna.UI2.WinForms.Guna2GradientButton answerBButton;
         private System.Windows.Forms.Label questionLabel;
-        private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton3;
-        private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton2;
-        private Guna.UI2.WinForms.Guna2GradientButton guna2GradientButton1;
+        private Guna.UI2.WinForms.Guna2GradientButton endGameButton;
+        private Guna.UI2.WinForms.Guna2TileButton fiftyButton;
+        private Guna.UI2.WinForms.Guna2TileButton askAudienceButton;
+        private Guna.UI2.WinForms.Guna2TileButton swapQuestionButton;
     }
 }
 

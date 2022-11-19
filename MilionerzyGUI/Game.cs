@@ -32,7 +32,7 @@ namespace Milionerzy
             |  |\/|  | |  | |  |     |  | |  |  |  | |  . `  | |   __|  |      /       /  /      \_    _/   
             |  |  |  | |  | |  `----.|  | |  `--'  | |  |\   | |  |____ |  |\  \----. /  /----.    |  |     
             |__|  |__| |__| |_______||__|  \______/  |__| \__| |_______|| _| `._____|/________|    |__|    " + "\n";
-        
+
 
         private Dictionary<int, string> prizes = new Dictionary<int, string>()
         {
@@ -50,6 +50,22 @@ namespace Milionerzy
             {11,"500 000 zł"},
             {12,"1 000 000 zł"},
         };
+        //private Dictionary<int, string> prizes = new Dictionary<int, string>()
+        //{
+        //    {0,"1 000 000 zł"},
+        //    {1,"500 000 zł"},
+        //    {2,"250 000 zł"},
+        //    {3,"125 000 zł"},
+        //    {4,"75 000 zł"},
+        //    {5,"40 000 zł" },
+        //    {6,"20 000 zł"},
+        //    {7,"10 000 zł"},
+        //    {8,"5000 zł"},
+        //    {9,"2000 zł"},
+        //    {10,"1000 zł"},
+        //    {11,"500 zł"},
+        //    {12,"0 zł"},
+        //};
         public void show(string s)
         {
             Console.SetCursorPosition((Console.WindowWidth - s.Length) / 2, Console.CursorTop);
@@ -444,7 +460,7 @@ namespace Milionerzy
                 askAudienceBool = false;
             }
         }
-        private void fiftyFifty(int qNumber) // Pierwsze koło ratunkowe 50/50
+        public void fiftyFifty(int qNumber) // Pierwsze koło ratunkowe 50/50
         {
             if (fiftyFiftyBool)
             {
@@ -453,29 +469,29 @@ namespace Milionerzy
 
                 if (questions[qNumber].answerA.Substring(0, 1) != correctA && deletedAnswers < 2)
                 {
-                    questions[qNumber].answerA = "XXX";
+                    questions[qNumber].answerA = "";
                     deletedAnswers++;
                 }
                 if (questions[qNumber].answerB.Substring(0, 1) != correctA && deletedAnswers < 2)
                 {
-                    questions[qNumber].answerB = "XXX";
+                    questions[qNumber].answerB = "";
                     deletedAnswers++;
                 }
                 if (questions[qNumber].answerC.Substring(0, 1) != correctA && deletedAnswers < 2)
                 {
-                    questions[qNumber].answerC = "XXX";
+                    questions[qNumber].answerC = "";
                     deletedAnswers++;
                 }
                 if (questions[qNumber].answerD.Substring(0, 1) != correctA && deletedAnswers < 2)
                 {
-                    questions[qNumber].answerD = "XXX";
+                    questions[qNumber].answerD = "";
                     deletedAnswers++;
                 }
                 fiftyFiftyBool = false;
             }
 
         }
-        private void changeQuestion(int qNumber)
+        public void changeQuestion(int qNumber)
         {
             if (changeQuestionBool)
             {
