@@ -87,9 +87,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="badAnswer.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
