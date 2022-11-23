@@ -22,7 +22,6 @@ namespace MilionerzyGUI
             //intro.Load();
             //intro.Play();
             InitializeComponent();
-            //loadQuestions();
 
             menuPanel.Visible = true;
             namePanel.Visible = false;
@@ -30,17 +29,8 @@ namespace MilionerzyGUI
             lastResultsPanel.Visible = false;
             settingsPanel.Visible = false;
 
-            namePanel.Hide();
-            roundPanel.Hide();
-            lastResultsPanel.Hide();
-            settingsPanel.Hide();
+            //ctrl + alt +t        
 
-            menuPanel.Show();
-
-            //ctrl + alt +t 
-
-            game.isGameActive = true;
-            //askQuestion(game.roundNumber);
         }
 
 
@@ -94,9 +84,6 @@ namespace MilionerzyGUI
                     outro.Load();
                     outro.Play();
                     game.isGameActive = false;
-
-                    //roundPanel.Visible = false;
-                    //menuPanel.Visible = true;
                 }
             }
             else
@@ -105,7 +92,6 @@ namespace MilionerzyGUI
                 switch (game.questions[game.roundNumber].correctAnswer)
                 {
                     case "a":
-                        //answerAButton.FillColor = Color.Green;
                         answerAButton.FillColor = Color.Green;
                         break;
                     case "b":
@@ -119,11 +105,23 @@ namespace MilionerzyGUI
                         break;
                 }
                 MessageBox.Show("PRZEGRAŁEŚ");
-
-                var winnings = game.winnerPrize(game.roundNumber, game.isGameActive);
-                game.saveResult(winnings);
+                goToMenuFromGPButton.Visible = true;
+                prizesListView.Items.Clear();
+                game.winnerPrize(game.roundNumber, game.isGameActive);
                 game.isGameActive = false;
                 game.resetGame();
+                
+                answerAButton.FillColor = Color.DarkBlue;
+                answerAButton.FillColor2 = Color.FromArgb(128, 128, 255);
+
+                answerBButton.FillColor = Color.FromArgb(128, 128, 255);
+                answerBButton.FillColor2 = Color.DarkBlue;
+
+                answerCButton.FillColor = Color.DarkBlue;
+                answerCButton.FillColor2 = Color.FromArgb(128, 128, 255);
+
+                answerDButton.FillColor = Color.FromArgb(128, 128, 255); 
+                answerDButton.FillColor2 = Color.DarkBlue;
             }
 
         }
@@ -135,18 +133,31 @@ namespace MilionerzyGUI
             switch (idx)
             {
                 case "easy":
-                    settingsLabel.Text = "Ustawienia -> Łatwy";
+                    currentLevelLabel.Text = "Aktualny poziom - Łatwy";
+                    levelNPLabel.Text = "Poziom - Łatwy";
                     game.level = 0;
+                    easyButton.FillColor = Color.Green;
+                    mediumButton.FillColor = Color.DarkBlue;
+                    hardButton.FillColor = Color.DarkBlue;
                     game.difficultyLevelVoid(game.level);
+                    
                     break;
                 case "medium":
-                    settingsLabel.Text = "Ustawienia -> Średni";
+                    currentLevelLabel.Text = "Aktualny poziom - Średni";
+                    levelNPLabel.Text = "Poziom - Średni";
                     game.level = 1;
+                    easyButton.FillColor = Color.DarkBlue;
+                    mediumButton.FillColor = Color.Green;
+                    hardButton.FillColor = Color.DarkBlue;
                     game.difficultyLevelVoid(game.level);
                     break;
                 case "hard":
-                    settingsLabel.Text = "Ustawienia -> Trudny";
+                    currentLevelLabel.Text = "Aktualny poziom - Trudny";
+                    levelNPLabel.Text = "Poziom - Trudny";
                     game.level = 2;
+                    easyButton.FillColor = Color.DarkBlue;
+                    mediumButton.FillColor = Color.DarkBlue;
+                    hardButton.FillColor = Color.Green;
                     game.difficultyLevelVoid(game.level);
                     break;
             }
@@ -184,10 +195,17 @@ namespace MilionerzyGUI
             {
 
                 case DialogResult.Yes:
+                    game.isGameActive = false;
+                   
+                    game.winnerPrize(game.roundNumber, game.isGameActive);
+                    goToMenuFromGPButton.Visible = true;
+                    game.resetGame();
+                    prizesListView.Items.Clear();
+                    game.winnerPrize(game.roundNumber, game.isGameActive);
                     MessageBox.Show("TAK");
                     break;
                 case DialogResult.No:
-                    MessageBox.Show("NJE");
+                    //MessageBox.Show("NJE");
                     break;
                 case DialogResult.Cancel:
                     break;
@@ -224,8 +242,9 @@ namespace MilionerzyGUI
         private void goToGameButton_Click(object sender, EventArgs e)
         {
             namePanel.Hide();
+            goToMenuFromGPButton.Visible = false;
             game.playerName = nameTextBox.Text;
-            if (game.playerName == null) game.playerName = "anonim";
+            if (game.playerName == "") game.playerName = "anonim";
             game.roundNumber = 0;
             loadQuestions();
             roundPanel.Visible = true;
@@ -242,11 +261,15 @@ namespace MilionerzyGUI
 
         private void goToLastResultButton_Click(object sender, EventArgs e)
         {
-            menuPanel.Hide();
+            menuPanel.Visible = false;
             lastResultsPanel.Visible = true;
-            lastResultsPanel.Show();
-            //lastResultsPanel.Show();
-            //lastResultListView.Items.Add(game.lastResults());
+
+            List<String> lastResults = game.lastResults();
+            foreach (var result in lastResults)
+            {
+                 lastResultsListView.Items.Add(result+"\n");         
+            }
+
         }
 
         private void goToSettingsButton_Click(object sender, EventArgs e)
@@ -261,6 +284,25 @@ namespace MilionerzyGUI
             settingsPanel.Visible = false;
             settingsPanel.Hide();
             menuPanel.Show();
+        }
+
+        private void goToMenuFromLRButton_Click(object sender, EventArgs e)
+        {
+            lastResultsListView.Items.Clear();
+            lastResultsPanel.Visible = false;
+            menuPanel.Visible = true;
+        }
+
+        private void goToMenuFromNPButton_Click(object sender, EventArgs e)
+        {
+            namePanel.Visible = false;
+            menuPanel.Visible = true;
+        }
+
+        private void goToMenuFromGPButton_Click(object sender, EventArgs e)
+        {
+            roundPanel.Visible = false;
+            menuPanel.Visible = true;
         }
     }
 }

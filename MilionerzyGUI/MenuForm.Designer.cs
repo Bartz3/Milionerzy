@@ -36,9 +36,11 @@
             this.goToSettingsButton = new Guna.UI2.WinForms.Guna2Button();
             this.goToLastResultButton = new Guna.UI2.WinForms.Guna2Button();
             this.lastResultsPanel = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.goToMenuFromLRButton = new Guna.UI2.WinForms.Guna2Button();
+            this.lastResultsListView = new System.Windows.Forms.ListView();
+            this.lastResultLabel = new System.Windows.Forms.Label();
             this.roundPanel = new System.Windows.Forms.Panel();
-            this.answerDButton = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.goToMenuFromGPButton = new Guna.UI2.WinForms.Guna2GradientButton();
             this.answerCButton = new Guna.UI2.WinForms.Guna2GradientButton();
             this.answerBButton = new Guna.UI2.WinForms.Guna2GradientButton();
             this.answerAButton = new Guna.UI2.WinForms.Guna2GradientButton();
@@ -50,11 +52,15 @@
             this.fiftyButton = new Guna.UI2.WinForms.Guna2TileButton();
             this.endGameButton = new Guna.UI2.WinForms.Guna2GradientButton();
             this.prizesListView = new System.Windows.Forms.ListView();
+            this.answerDButton = new Guna.UI2.WinForms.Guna2GradientButton();
             this.namePanel = new System.Windows.Forms.Panel();
+            this.levelNPLabel = new System.Windows.Forms.Label();
+            this.goToMenuFromNPButton = new Guna.UI2.WinForms.Guna2Button();
             this.goToGameButton = new Guna.UI2.WinForms.Guna2Button();
             this.nameTextBox = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.settingsPanel = new System.Windows.Forms.Panel();
+            this.currentLevelLabel = new System.Windows.Forms.Label();
             this.settingsLabel = new System.Windows.Forms.Label();
             this.backToMenuFromSettingsButton = new Guna.UI2.WinForms.Guna2Button();
             this.mediumButton = new Guna.UI2.WinForms.Guna2Button();
@@ -182,58 +188,96 @@
             // lastResultsPanel
             // 
             this.lastResultsPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lastResultsPanel.BackgroundImage")));
-            this.lastResultsPanel.Controls.Add(this.label1);
+            this.lastResultsPanel.Controls.Add(this.goToMenuFromLRButton);
+            this.lastResultsPanel.Controls.Add(this.lastResultsListView);
+            this.lastResultsPanel.Controls.Add(this.lastResultLabel);
             this.lastResultsPanel.Location = new System.Drawing.Point(0, 0);
             this.lastResultsPanel.Name = "lastResultsPanel";
             this.lastResultsPanel.Size = new System.Drawing.Size(1024, 600);
             this.lastResultsPanel.TabIndex = 10;
             this.lastResultsPanel.Visible = false;
             // 
-            // label1
+            // goToMenuFromLRButton
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.ForeColor = System.Drawing.Color.BurlyWood;
-            this.label1.Location = new System.Drawing.Point(332, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(360, 55);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Ostatnie wyniki";
+            this.goToMenuFromLRButton.BackColor = System.Drawing.Color.Transparent;
+            this.goToMenuFromLRButton.BorderColor = System.Drawing.Color.IndianRed;
+            this.goToMenuFromLRButton.BorderRadius = 25;
+            this.goToMenuFromLRButton.BorderThickness = 3;
+            this.goToMenuFromLRButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.goToMenuFromLRButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.goToMenuFromLRButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.goToMenuFromLRButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.goToMenuFromLRButton.FillColor = System.Drawing.Color.DarkBlue;
+            this.goToMenuFromLRButton.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.goToMenuFromLRButton.ForeColor = System.Drawing.Color.White;
+            this.goToMenuFromLRButton.Location = new System.Drawing.Point(441, 501);
+            this.goToMenuFromLRButton.Name = "goToMenuFromLRButton";
+            this.goToMenuFromLRButton.Size = new System.Drawing.Size(167, 65);
+            this.goToMenuFromLRButton.TabIndex = 12;
+            this.goToMenuFromLRButton.Text = "Wróć do menu";
+            this.goToMenuFromLRButton.UseTransparentBackground = true;
+            this.goToMenuFromLRButton.Click += new System.EventHandler(this.goToMenuFromLRButton_Click);
+            // 
+            // lastResultsListView
+            // 
+            this.lastResultsListView.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.lastResultsListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lastResultsListView.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.lastResultsListView.HideSelection = false;
+            this.lastResultsListView.Location = new System.Drawing.Point(380, 93);
+            this.lastResultsListView.Name = "lastResultsListView";
+            this.lastResultsListView.Size = new System.Drawing.Size(299, 369);
+            this.lastResultsListView.TabIndex = 11;
+            this.lastResultsListView.UseCompatibleStateImageBehavior = false;
+            this.lastResultsListView.View = System.Windows.Forms.View.List;
+            // 
+            // lastResultLabel
+            // 
+            this.lastResultLabel.AutoSize = true;
+            this.lastResultLabel.BackColor = System.Drawing.Color.Transparent;
+            this.lastResultLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lastResultLabel.ForeColor = System.Drawing.Color.BurlyWood;
+            this.lastResultLabel.Location = new System.Drawing.Point(332, 20);
+            this.lastResultLabel.Name = "lastResultLabel";
+            this.lastResultLabel.Size = new System.Drawing.Size(360, 55);
+            this.lastResultLabel.TabIndex = 10;
+            this.lastResultLabel.Text = "Ostatnie wyniki";
             // 
             // roundPanel
             // 
             this.roundPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("roundPanel.BackgroundImage")));
-            this.roundPanel.Controls.Add(this.answerDButton);
+            this.roundPanel.Controls.Add(this.goToMenuFromGPButton);
             this.roundPanel.Controls.Add(this.answerCButton);
             this.roundPanel.Controls.Add(this.answerBButton);
             this.roundPanel.Controls.Add(this.answerAButton);
             this.roundPanel.Controls.Add(this.questionPanel);
             this.roundPanel.Controls.Add(this.rightToolsGroupBox);
+            this.roundPanel.Controls.Add(this.answerDButton);
             this.roundPanel.Location = new System.Drawing.Point(0, 0);
             this.roundPanel.Name = "roundPanel";
             this.roundPanel.Size = new System.Drawing.Size(1024, 600);
             this.roundPanel.TabIndex = 7;
             // 
-            // answerDButton
+            // goToMenuFromGPButton
             // 
-            this.answerDButton.BackColor = System.Drawing.Color.Transparent;
-            this.answerDButton.BorderRadius = 30;
-            this.answerDButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.answerDButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.answerDButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.answerDButton.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.answerDButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.answerDButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.answerDButton.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.answerDButton.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.answerDButton.ForeColor = System.Drawing.Color.Yellow;
-            this.answerDButton.Location = new System.Drawing.Point(492, 488);
-            this.answerDButton.Name = "answerDButton";
-            this.answerDButton.Size = new System.Drawing.Size(187, 65);
-            this.answerDButton.TabIndex = 8;
-            this.answerDButton.Text = "d";
-            this.answerDButton.Click += new System.EventHandler(this.checkAnswerEvent);
+            this.goToMenuFromGPButton.BackColor = System.Drawing.Color.Transparent;
+            this.goToMenuFromGPButton.BorderRadius = 30;
+            this.goToMenuFromGPButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.goToMenuFromGPButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.goToMenuFromGPButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.goToMenuFromGPButton.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.goToMenuFromGPButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.goToMenuFromGPButton.FillColor = System.Drawing.Color.DarkBlue;
+            this.goToMenuFromGPButton.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.goToMenuFromGPButton.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.goToMenuFromGPButton.ForeColor = System.Drawing.Color.Yellow;
+            this.goToMenuFromGPButton.Location = new System.Drawing.Point(24, 488);
+            this.goToMenuFromGPButton.Name = "goToMenuFromGPButton";
+            this.goToMenuFromGPButton.Size = new System.Drawing.Size(89, 65);
+            this.goToMenuFromGPButton.TabIndex = 14;
+            this.goToMenuFromGPButton.Text = "Wróć do menu";
+            this.goToMenuFromGPButton.Visible = false;
+            this.goToMenuFromGPButton.Click += new System.EventHandler(this.goToMenuFromGPButton_Click);
             // 
             // answerCButton
             // 
@@ -244,7 +288,7 @@
             this.answerCButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.answerCButton.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.answerCButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.answerCButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.answerCButton.FillColor = System.Drawing.Color.DarkBlue;
             this.answerCButton.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.answerCButton.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.answerCButton.ForeColor = System.Drawing.Color.Yellow;
@@ -265,7 +309,7 @@
             this.answerBButton.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.answerBButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.answerBButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.answerBButton.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.answerBButton.FillColor2 = System.Drawing.Color.DarkBlue;
             this.answerBButton.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.answerBButton.ForeColor = System.Drawing.Color.Yellow;
             this.answerBButton.Location = new System.Drawing.Point(492, 397);
@@ -284,7 +328,7 @@
             this.answerAButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.answerAButton.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.answerAButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.answerAButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.answerAButton.FillColor = System.Drawing.Color.DarkBlue;
             this.answerAButton.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.answerAButton.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.answerAButton.ForeColor = System.Drawing.Color.Yellow;
@@ -301,9 +345,9 @@
             this.questionPanel.BorderColor = System.Drawing.Color.White;
             this.questionPanel.BorderRadius = 70;
             this.questionPanel.Controls.Add(this.questionLabel);
-            this.questionPanel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.questionPanel.FillColor = System.Drawing.Color.DarkBlue;
             this.questionPanel.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.questionPanel.FillColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.questionPanel.FillColor3 = System.Drawing.Color.DarkBlue;
             this.questionPanel.FillColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.questionPanel.Location = new System.Drawing.Point(234, 167);
             this.questionPanel.Name = "questionPanel";
@@ -434,9 +478,31 @@
             this.prizesListView.UseCompatibleStateImageBehavior = false;
             this.prizesListView.View = System.Windows.Forms.View.List;
             // 
+            // answerDButton
+            // 
+            this.answerDButton.BackColor = System.Drawing.Color.Transparent;
+            this.answerDButton.BorderRadius = 30;
+            this.answerDButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.answerDButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.answerDButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.answerDButton.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.answerDButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.answerDButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.answerDButton.FillColor2 = System.Drawing.Color.DarkBlue;
+            this.answerDButton.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.answerDButton.ForeColor = System.Drawing.Color.Yellow;
+            this.answerDButton.Location = new System.Drawing.Point(492, 488);
+            this.answerDButton.Name = "answerDButton";
+            this.answerDButton.Size = new System.Drawing.Size(187, 65);
+            this.answerDButton.TabIndex = 8;
+            this.answerDButton.Text = "d";
+            this.answerDButton.Click += new System.EventHandler(this.checkAnswerEvent);
+            // 
             // namePanel
             // 
             this.namePanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("namePanel.BackgroundImage")));
+            this.namePanel.Controls.Add(this.levelNPLabel);
+            this.namePanel.Controls.Add(this.goToMenuFromNPButton);
             this.namePanel.Controls.Add(this.goToGameButton);
             this.namePanel.Controls.Add(this.nameTextBox);
             this.namePanel.Controls.Add(this.guna2HtmlLabel1);
@@ -445,6 +511,39 @@
             this.namePanel.Size = new System.Drawing.Size(1024, 598);
             this.namePanel.TabIndex = 6;
             this.namePanel.Visible = false;
+            // 
+            // levelNPLabel
+            // 
+            this.levelNPLabel.AutoSize = true;
+            this.levelNPLabel.BackColor = System.Drawing.Color.Transparent;
+            this.levelNPLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.levelNPLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.levelNPLabel.Location = new System.Drawing.Point(397, 75);
+            this.levelNPLabel.Name = "levelNPLabel";
+            this.levelNPLabel.Size = new System.Drawing.Size(251, 37);
+            this.levelNPLabel.TabIndex = 14;
+            this.levelNPLabel.Text = "Poziom - Łatwy";
+            // 
+            // goToMenuFromNPButton
+            // 
+            this.goToMenuFromNPButton.BackColor = System.Drawing.Color.Transparent;
+            this.goToMenuFromNPButton.BorderColor = System.Drawing.Color.IndianRed;
+            this.goToMenuFromNPButton.BorderRadius = 25;
+            this.goToMenuFromNPButton.BorderThickness = 3;
+            this.goToMenuFromNPButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.goToMenuFromNPButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.goToMenuFromNPButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.goToMenuFromNPButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.goToMenuFromNPButton.FillColor = System.Drawing.Color.DarkBlue;
+            this.goToMenuFromNPButton.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.goToMenuFromNPButton.ForeColor = System.Drawing.Color.White;
+            this.goToMenuFromNPButton.Location = new System.Drawing.Point(441, 488);
+            this.goToMenuFromNPButton.Name = "goToMenuFromNPButton";
+            this.goToMenuFromNPButton.Size = new System.Drawing.Size(167, 65);
+            this.goToMenuFromNPButton.TabIndex = 13;
+            this.goToMenuFromNPButton.Text = "Wróć do menu";
+            this.goToMenuFromNPButton.UseTransparentBackground = true;
+            this.goToMenuFromNPButton.Click += new System.EventHandler(this.goToMenuFromNPButton_Click);
             // 
             // goToGameButton
             // 
@@ -504,6 +603,7 @@
             // settingsPanel
             // 
             this.settingsPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("settingsPanel.BackgroundImage")));
+            this.settingsPanel.Controls.Add(this.currentLevelLabel);
             this.settingsPanel.Controls.Add(this.settingsLabel);
             this.settingsPanel.Controls.Add(this.backToMenuFromSettingsButton);
             this.settingsPanel.Controls.Add(this.mediumButton);
@@ -515,6 +615,18 @@
             this.settingsPanel.Size = new System.Drawing.Size(1024, 600);
             this.settingsPanel.TabIndex = 11;
             this.settingsPanel.Visible = false;
+            // 
+            // currentLevelLabel
+            // 
+            this.currentLevelLabel.AutoSize = true;
+            this.currentLevelLabel.BackColor = System.Drawing.Color.Transparent;
+            this.currentLevelLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.currentLevelLabel.ForeColor = System.Drawing.Color.BurlyWood;
+            this.currentLevelLabel.Location = new System.Drawing.Point(335, 75);
+            this.currentLevelLabel.Name = "currentLevelLabel";
+            this.currentLevelLabel.Size = new System.Drawing.Size(389, 37);
+            this.currentLevelLabel.TabIndex = 10;
+            this.currentLevelLabel.Text = "Aktualny poziom - Łatwy";
             // 
             // settingsLabel
             // 
@@ -562,7 +674,7 @@
             this.mediumButton.FillColor = System.Drawing.Color.DarkBlue;
             this.mediumButton.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.mediumButton.ForeColor = System.Drawing.Color.White;
-            this.mediumButton.Location = new System.Drawing.Point(441, 167);
+            this.mediumButton.Location = new System.Drawing.Point(441, 234);
             this.mediumButton.Name = "mediumButton";
             this.mediumButton.Size = new System.Drawing.Size(167, 65);
             this.mediumButton.TabIndex = 7;
@@ -584,7 +696,7 @@
             this.hardButton.FillColor = System.Drawing.Color.DarkBlue;
             this.hardButton.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.hardButton.ForeColor = System.Drawing.Color.White;
-            this.hardButton.Location = new System.Drawing.Point(443, 248);
+            this.hardButton.Location = new System.Drawing.Point(443, 315);
             this.hardButton.Name = "hardButton";
             this.hardButton.Size = new System.Drawing.Size(167, 65);
             this.hardButton.TabIndex = 6;
@@ -603,10 +715,10 @@
             this.easyButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.easyButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.easyButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.easyButton.FillColor = System.Drawing.Color.DarkBlue;
+            this.easyButton.FillColor = System.Drawing.Color.SeaGreen;
             this.easyButton.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.easyButton.ForeColor = System.Drawing.Color.White;
-            this.easyButton.Location = new System.Drawing.Point(441, 78);
+            this.easyButton.Location = new System.Drawing.Point(441, 145);
             this.easyButton.Name = "easyButton";
             this.easyButton.Size = new System.Drawing.Size(167, 65);
             this.easyButton.TabIndex = 5;
@@ -620,11 +732,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1398, 922);
+            this.Controls.Add(this.roundPanel);
             this.Controls.Add(this.lastResultsPanel);
             this.Controls.Add(this.namePanel);
             this.Controls.Add(this.menuPanel);
             this.Controls.Add(this.settingsPanel);
-            this.Controls.Add(this.roundPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MenuForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -670,13 +782,19 @@
         private Guna.UI2.WinForms.Guna2TileButton askAudienceButton;
         private Guna.UI2.WinForms.Guna2TileButton swapQuestionButton;
         private System.Windows.Forms.Panel lastResultsPanel;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lastResultLabel;
         private System.Windows.Forms.Panel settingsPanel;
         private System.Windows.Forms.Label settingsLabel;
         private Guna.UI2.WinForms.Guna2Button backToMenuFromSettingsButton;
         private Guna.UI2.WinForms.Guna2Button mediumButton;
         private Guna.UI2.WinForms.Guna2Button hardButton;
         private Guna.UI2.WinForms.Guna2Button easyButton;
+        private System.Windows.Forms.Label currentLevelLabel;
+        private System.Windows.Forms.ListView lastResultsListView;
+        private Guna.UI2.WinForms.Guna2Button goToMenuFromLRButton;
+        private Guna.UI2.WinForms.Guna2Button goToMenuFromNPButton;
+        private System.Windows.Forms.Label levelNPLabel;
+        private Guna.UI2.WinForms.Guna2GradientButton goToMenuFromGPButton;
     }
 }
 
