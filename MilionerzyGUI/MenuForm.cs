@@ -18,9 +18,7 @@ namespace MilionerzyGUI
         Game game = new Game();
         public MenuForm()
         {
-            //SoundPlayer intro = new SoundPlayer("intro.wav");
-            //intro.Load();
-            //intro.Play();
+            game.Start();
             InitializeComponent();
 
             menuPanel.Visible = true;
@@ -28,8 +26,7 @@ namespace MilionerzyGUI
             roundPanel.Visible = false;
             lastResultsPanel.Visible = false;
             settingsPanel.Visible = false;
-
-            //ctrl + alt +t        
+ 
 
         }
 
@@ -39,18 +36,6 @@ namespace MilionerzyGUI
             game.questions = game.readQuestions();        // Pobranie pytań do rozgrywki
                                                           //ListViewItem item= new ListViewItem("itemjeden",0);
                                                           //gameQuestions = game.readQuestions();
-            ColumnHeader columnHeader = new ColumnHeader();
-            columnHeader.Text = "Pytanie";
-            columnHeader.TextAlign = HorizontalAlignment.Center;
-            columnHeader.Width = 235;
-
-            ColumnHeader columnHeader2 = new ColumnHeader();
-            columnHeader2.Text = "Próg ";
-            columnHeader2.TextAlign = HorizontalAlignment.Center;
-            columnHeader2.Width = 35;
-
-            prizesListView.Columns.Add(columnHeader);
-            prizesListView.Columns.Add(columnHeader2);
             int count = 12;
             foreach (var prize in game.Prizes.Values.Reverse())
             {
@@ -65,6 +50,7 @@ namespace MilionerzyGUI
                 }
                 listItem.SubItems.Add(count.ToString());
                 prizesListView.Items.Add(listItem);
+                    prizesListView.Alignment = ListViewAlignment.SnapToGrid;
                 count--;
             }
 
@@ -73,55 +59,52 @@ namespace MilionerzyGUI
         {
             var senderObject = (Guna2GradientButton)sender;
             string userAnswer = senderObject.Text.Substring(0, 1);
-
+            askAudienceGroupBox.Visible = false;
             if (userAnswer == game.questions[game.roundNumber].correctAnswer)
             {
                 game.roundNumber++;
                 askQuestion(game.roundNumber);
                 if (game.roundNumber == 13)
                 {
-                    SoundPlayer outro = new SoundPlayer("outro.wav");
-                    outro.Load();
-                    outro.Play();
+                    game.winnerEnding();
                     game.isGameActive = false;
                 }
             }
             else
             {
+
                 senderObject.FillColor = Color.Red;
-                switch (game.questions[game.roundNumber].correctAnswer)
-                {
-                    case "a":
-                        answerAButton.FillColor = Color.Green;
-                        break;
-                    case "b":
-                        answerBButton.FillColor = Color.Green;
-                        break;
-                    case "c":
-                        answerCButton.FillColor = Color.Green;
-                        break;
-                    case "d":
-                        answerDButton.FillColor = Color.Green;
-                        break;
-                }
-                MessageBox.Show("PRZEGRAŁEŚ");
+                highlightCorrectAnswer();
+
+                enableHelpButtons(false);
+                Guna2MessageDialog dialog = new Guna2MessageDialog();
+                dialog.Caption = "Przegrana";
+                winnerInfoLabel.Visible = true;
+                winnerInfoLabel.Text = $"Twoja wygrana:\n{game.winnerPrize(game.roundNumber, game.isGameActive)}";
                 goToMenuFromGPButton.Visible = true;
-                prizesListView.Items.Clear();
                 game.winnerPrize(game.roundNumber, game.isGameActive);
                 game.isGameActive = false;
-                game.resetGame();
                 
-                answerAButton.FillColor = Color.DarkBlue;
-                answerAButton.FillColor2 = Color.FromArgb(128, 128, 255);
 
-                answerBButton.FillColor = Color.FromArgb(128, 128, 255);
-                answerBButton.FillColor2 = Color.DarkBlue;
+            }
 
-                answerCButton.FillColor = Color.DarkBlue;
-                answerCButton.FillColor2 = Color.FromArgb(128, 128, 255);
-
-                answerDButton.FillColor = Color.FromArgb(128, 128, 255); 
-                answerDButton.FillColor2 = Color.DarkBlue;
+        }
+        private void highlightCorrectAnswer()
+        {
+            switch (game.questions[game.roundNumber].correctAnswer)
+            {
+                case "a":
+                    answerAButton.FillColor = Color.Green;
+                    break;
+                case "b":
+                    answerBButton.FillColor = Color.Green;
+                    break;
+                case "c":
+                    answerCButton.FillColor = Color.Green;
+                    break;
+                case "d":
+                    answerDButton.FillColor = Color.Green;
+                    break;
             }
 
         }
@@ -173,23 +156,46 @@ namespace MilionerzyGUI
                     game.fiftyFifty(game.roundNumber);
                     fiftyButton.Visible = false;
                     game.fiftyFiftyBoolRound = game.roundNumber;
-                    askQuestion(game.roundNumber);
+                    
                     break;
                 case "swap":
                     game.changeQuestion(game.roundNumber);
                     swapQuestionButton.Visible = false;
-                    askQuestion(game.roundNumber);
+                    
                     break;
                 case "ask":
-                    game.askAudience(game.roundNumber);
+                    askAudienceHelpMethod();
+                    askAudienceGroupBox.Visible = true;
+                    //game.askAudience(game.roundNumber);
+                    game.askAudience2(game.roundNumber);
                     askAudienceButton.Visible = false;
-                    askQuestion(game.roundNumber);
                     break;
             }
+                    askQuestion(game.roundNumber);
+        }
+        private void askAudienceHelpMethod()
+        {
+            int[] chances = new int[4];
+            chances = game.askAudience2(game.roundNumber);
+
+            aPB.Value = chances[0];
+            aPB.Text = chances[0].ToString();
+            bPB.Value = chances[1];
+            bPB.Text = chances[1].ToString();
+            cPB.Value = chances[2];
+            cPB.Text = chances[2].ToString();
+            dPB.Value = chances[3];
+            dPB.Text = chances[3].ToString();
+
         }
         private void endGameButton_Click(object sender, EventArgs e)
         {
-            DialogResult = MessageDialog.Show(this, "Czy zakończyć grę?", "", MessageDialogButtons.YesNoCancel, MessageDialogStyle.Dark);
+
+            MessageDialog.TextOnButtons.Yes = "Tak";
+            MessageDialog.TextOnButtons.No = "Nie";
+            DialogResult = MessageDialog.Show(this, "Czy zakończyć grę?", "", MessageDialogButtons.YesNo, MessageDialogStyle.Default);
+
+            
 
             switch (DialogResult)
             {
@@ -199,20 +205,41 @@ namespace MilionerzyGUI
                    
                     game.winnerPrize(game.roundNumber, game.isGameActive);
                     goToMenuFromGPButton.Visible = true;
-                    game.resetGame();
-                    prizesListView.Items.Clear();
-                    game.winnerPrize(game.roundNumber, game.isGameActive);
-                    MessageBox.Show("TAK");
+                    //game.resetGame();
+                    //prizesListView.Items.Clear();
+                    winnerInfoLabel.Visible = true;
+                    winnerInfoLabel.Text = $"Twoja wygrana:\n{game.winnerPrize(game.roundNumber, game.isGameActive)}";
+                    highlightCorrectAnswer();
+                    enableHelpButtons(false);   
                     break;
                 case DialogResult.No:
-                    //MessageBox.Show("NJE");
-                    break;
-                case DialogResult.Cancel:
                     break;
             }
         }
+        private void enableHelpButtons(bool isActive)
+        {
+            askAudienceButton.Enabled = isActive;
+            fiftyButton.Enabled = isActive;
+            swapQuestionButton.Enabled = isActive;
+            endGameButton.Enabled = isActive;
+        }
         private void endOfTheGame()
         {
+            game.resetGame();
+            prizesListView.Items.Clear();
+            answerAButton.FillColor = Color.DarkBlue;
+            answerAButton.FillColor2 = Color.FromArgb(128, 128, 255);
+
+            answerBButton.FillColor = Color.FromArgb(128, 128, 255);
+            answerBButton.FillColor2 = Color.DarkBlue;
+
+            answerCButton.FillColor = Color.DarkBlue;
+            answerCButton.FillColor2 = Color.FromArgb(128, 128, 255);
+
+            answerDButton.FillColor = Color.FromArgb(128, 128, 255);
+            answerDButton.FillColor2 = Color.DarkBlue;
+
+            winnerInfoLabel.Visible = false;
 
         }
         private void askQuestion(int roundNr)
@@ -242,13 +269,18 @@ namespace MilionerzyGUI
         private void goToGameButton_Click(object sender, EventArgs e)
         {
             namePanel.Hide();
+            enableHelpButtons(true);
             goToMenuFromGPButton.Visible = false;
             game.playerName = nameTextBox.Text;
             if (game.playerName == "") game.playerName = "anonim";
             game.roundNumber = 0;
             loadQuestions();
             roundPanel.Visible = true;
+            fiftyButton.Visible = true;
+            swapQuestionButton.Visible = true;
+            askAudienceButton.Visible = true;
             game.isGameActive = true;
+            askAudienceGroupBox.Visible = false;
             askQuestion(game.roundNumber);
 
         }
@@ -302,7 +334,9 @@ namespace MilionerzyGUI
         private void goToMenuFromGPButton_Click(object sender, EventArgs e)
         {
             roundPanel.Visible = false;
+            endOfTheGame();
             menuPanel.Visible = true;
         }
     }
 }
+    
