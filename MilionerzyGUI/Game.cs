@@ -73,6 +73,12 @@ namespace Milionerzy
             intro.Load();
             intro.Play();
         }
+        public void badAnswerSound()
+        {
+            SoundPlayer intro = new SoundPlayer("badAnswer.wav");
+            intro.Load();
+            intro.Play();
+        }
         public void winnerEnding()
         {
             SoundPlayer outro = new SoundPlayer("outro.wav");

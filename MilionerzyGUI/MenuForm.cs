@@ -78,7 +78,7 @@ namespace MilionerzyGUI
 
                 senderObject.FillColor = Color.Red;
                 highlightCorrectAnswer();
-
+                game.badAnswerSound();
                 enableHelpButtons(false);
                 Guna2MessageDialog dialog = new Guna2MessageDialog();
                 dialog.Caption = "Przegrana";
