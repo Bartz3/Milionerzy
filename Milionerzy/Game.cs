@@ -98,6 +98,7 @@ namespace Milionerzy
             show("Powodzenia!");
             roundNumber = 0;
             Console.ReadKey(true);
+            Console.Clear();
 
             questions = readQuestions();
             isGameActive = true;
@@ -153,6 +154,7 @@ namespace Milionerzy
                     show("Wciśnij dowolny przycisk aby kontynuować.");
                     resetGame();
                     Console.ReadKey();
+                    Console.Clear();
                     RunMainMenu();
                     break;
 
@@ -186,6 +188,7 @@ namespace Milionerzy
 
                     showPrizes(roundNumber);
                     Console.ReadKey();
+                    Console.Clear();
                 }
                 else
                 {
@@ -232,10 +235,13 @@ namespace Milionerzy
             show("Naciśnij dowolny przycisk aby przejść do głównego menu...");
 
             Console.ReadKey(true);
+            Console.Clear();
+
             RunMainMenu();
         }
         private void RunMainMenu()
         {
+            Console.Clear();
             string[] options = { "Nowa gra", "Ustawienia", "Ostatnie wyniki", "Wyjście" };
             Menu mainMenu = new Menu(logo, options);
             int selectedIndex = mainMenu.Run(0);
@@ -246,6 +252,7 @@ namespace Milionerzy
                     startGame();
                     break;
                 case 1:
+                    Console.Clear();
                     pickDifficultyLevel();
                     break;
                 case 2:

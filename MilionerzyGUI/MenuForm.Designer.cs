@@ -84,8 +84,6 @@
             this.rightToolsGroupBox.SuspendLayout();
             this.namePanel.SuspendLayout();
             this.settingsPanel.SuspendLayout();
-            this.helpButtonsGroupBox.SuspendLayout();
-            this.askAudienceGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // goToNamePanel
@@ -101,9 +99,10 @@
             this.goToNamePanel.FillColor = System.Drawing.Color.DarkBlue;
             this.goToNamePanel.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.goToNamePanel.ForeColor = System.Drawing.Color.White;
-            this.goToNamePanel.Location = new System.Drawing.Point(441, 78);
+            this.goToNamePanel.Location = new System.Drawing.Point(588, 96);
+            this.goToNamePanel.Margin = new System.Windows.Forms.Padding(4);
             this.goToNamePanel.Name = "goToNamePanel";
-            this.goToNamePanel.Size = new System.Drawing.Size(167, 65);
+            this.goToNamePanel.Size = new System.Drawing.Size(223, 80);
             this.goToNamePanel.TabIndex = 5;
             this.goToNamePanel.Text = "Rozpocznij grę";
             this.goToNamePanel.UseTransparentBackground = true;
@@ -119,8 +118,9 @@
             this.menuPanel.Controls.Add(this.goToNamePanel);
             this.menuPanel.ForeColor = System.Drawing.Color.DarkBlue;
             this.menuPanel.Location = new System.Drawing.Point(0, 0);
+            this.menuPanel.Margin = new System.Windows.Forms.Padding(4);
             this.menuPanel.Name = "menuPanel";
-            this.menuPanel.Size = new System.Drawing.Size(1024, 600);
+            this.menuPanel.Size = new System.Drawing.Size(1365, 738);
             this.menuPanel.TabIndex = 6;
             // 
             // label2
@@ -129,9 +129,10 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label2.ForeColor = System.Drawing.Color.BurlyWood;
-            this.label2.Location = new System.Drawing.Point(399, 0);
+            this.label2.Location = new System.Drawing.Point(532, 0);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(249, 55);
+            this.label2.Size = new System.Drawing.Size(308, 69);
             this.label2.TabIndex = 9;
             this.label2.Text = "Milionerzy";
             // 
@@ -150,7 +151,7 @@
             this.exitGameButton.ForeColor = System.Drawing.Color.White;
             this.exitGameButton.Location = new System.Drawing.Point(441, 488);
             this.exitGameButton.Name = "exitGameButton";
-            this.exitGameButton.Size = new System.Drawing.Size(167, 65);
+            this.exitGameButton.Size = new System.Drawing.Size(223, 80);
             this.exitGameButton.TabIndex = 8;
             this.exitGameButton.Text = "Zakończ grę";
             this.exitGameButton.UseTransparentBackground = true;
@@ -169,9 +170,10 @@
             this.goToSettingsButton.FillColor = System.Drawing.Color.DarkBlue;
             this.goToSettingsButton.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.goToSettingsButton.ForeColor = System.Drawing.Color.White;
-            this.goToSettingsButton.Location = new System.Drawing.Point(441, 167);
+            this.goToSettingsButton.Location = new System.Drawing.Point(588, 206);
+            this.goToSettingsButton.Margin = new System.Windows.Forms.Padding(4);
             this.goToSettingsButton.Name = "goToSettingsButton";
-            this.goToSettingsButton.Size = new System.Drawing.Size(167, 65);
+            this.goToSettingsButton.Size = new System.Drawing.Size(223, 80);
             this.goToSettingsButton.TabIndex = 7;
             this.goToSettingsButton.Text = "Ustawienia";
             this.goToSettingsButton.UseTransparentBackground = true;
@@ -190,9 +192,10 @@
             this.goToLastResultButton.FillColor = System.Drawing.Color.DarkBlue;
             this.goToLastResultButton.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.goToLastResultButton.ForeColor = System.Drawing.Color.White;
-            this.goToLastResultButton.Location = new System.Drawing.Point(443, 248);
+            this.goToLastResultButton.Location = new System.Drawing.Point(591, 305);
+            this.goToLastResultButton.Margin = new System.Windows.Forms.Padding(4);
             this.goToLastResultButton.Name = "goToLastResultButton";
-            this.goToLastResultButton.Size = new System.Drawing.Size(167, 65);
+            this.goToLastResultButton.Size = new System.Drawing.Size(223, 80);
             this.goToLastResultButton.TabIndex = 6;
             this.goToLastResultButton.Text = "Ostatnie wyniki";
             this.goToLastResultButton.UseTransparentBackground = true;
@@ -205,8 +208,9 @@
             this.lastResultsPanel.Controls.Add(this.lastResultsListView);
             this.lastResultsPanel.Controls.Add(this.lastResultLabel);
             this.lastResultsPanel.Location = new System.Drawing.Point(0, 0);
+            this.lastResultsPanel.Margin = new System.Windows.Forms.Padding(4);
             this.lastResultsPanel.Name = "lastResultsPanel";
-            this.lastResultsPanel.Size = new System.Drawing.Size(1024, 600);
+            this.lastResultsPanel.Size = new System.Drawing.Size(1365, 738);
             this.lastResultsPanel.TabIndex = 10;
             this.lastResultsPanel.Visible = false;
             // 
@@ -225,7 +229,7 @@
             this.goToMenuFromLRButton.ForeColor = System.Drawing.Color.White;
             this.goToMenuFromLRButton.Location = new System.Drawing.Point(443, 488);
             this.goToMenuFromLRButton.Name = "goToMenuFromLRButton";
-            this.goToMenuFromLRButton.Size = new System.Drawing.Size(167, 65);
+            this.goToMenuFromLRButton.Size = new System.Drawing.Size(223, 80);
             this.goToMenuFromLRButton.TabIndex = 12;
             this.goToMenuFromLRButton.Text = "Wróć do menu";
             this.goToMenuFromLRButton.UseTransparentBackground = true;
@@ -237,7 +241,8 @@
             this.lastResultsListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lastResultsListView.ForeColor = System.Drawing.Color.Yellow;
             this.lastResultsListView.HideSelection = false;
-            this.lastResultsListView.Location = new System.Drawing.Point(380, 93);
+            this.lastResultsListView.Location = new System.Drawing.Point(507, 114);
+            this.lastResultsListView.Margin = new System.Windows.Forms.Padding(4);
             this.lastResultsListView.Name = "lastResultsListView";
             this.lastResultsListView.Size = new System.Drawing.Size(288, 344);
             this.lastResultsListView.TabIndex = 11;
@@ -250,9 +255,10 @@
             this.lastResultLabel.BackColor = System.Drawing.Color.Transparent;
             this.lastResultLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lastResultLabel.ForeColor = System.Drawing.Color.BurlyWood;
-            this.lastResultLabel.Location = new System.Drawing.Point(332, 20);
+            this.lastResultLabel.Location = new System.Drawing.Point(443, 25);
+            this.lastResultLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lastResultLabel.Name = "lastResultLabel";
-            this.lastResultLabel.Size = new System.Drawing.Size(360, 55);
+            this.lastResultLabel.Size = new System.Drawing.Size(446, 69);
             this.lastResultLabel.TabIndex = 10;
             this.lastResultLabel.Text = "Ostatnie wyniki";
             // 
@@ -268,8 +274,9 @@
             this.roundPanel.Controls.Add(this.rightToolsGroupBox);
             this.roundPanel.Controls.Add(this.answerDButton);
             this.roundPanel.Location = new System.Drawing.Point(0, 0);
+            this.roundPanel.Margin = new System.Windows.Forms.Padding(4);
             this.roundPanel.Name = "roundPanel";
-            this.roundPanel.Size = new System.Drawing.Size(1024, 600);
+            this.roundPanel.Size = new System.Drawing.Size(1365, 738);
             this.roundPanel.TabIndex = 7;
             // 
             // goToMenuFromGPButton
@@ -285,9 +292,10 @@
             this.goToMenuFromGPButton.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.goToMenuFromGPButton.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.goToMenuFromGPButton.ForeColor = System.Drawing.Color.Yellow;
-            this.goToMenuFromGPButton.Location = new System.Drawing.Point(24, 488);
+            this.goToMenuFromGPButton.Location = new System.Drawing.Point(32, 601);
+            this.goToMenuFromGPButton.Margin = new System.Windows.Forms.Padding(4);
             this.goToMenuFromGPButton.Name = "goToMenuFromGPButton";
-            this.goToMenuFromGPButton.Size = new System.Drawing.Size(89, 65);
+            this.goToMenuFromGPButton.Size = new System.Drawing.Size(119, 80);
             this.goToMenuFromGPButton.TabIndex = 14;
             this.goToMenuFromGPButton.Text = "Wróć do menu";
             this.goToMenuFromGPButton.Visible = false;
@@ -306,9 +314,10 @@
             this.answerCButton.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.answerCButton.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.answerCButton.ForeColor = System.Drawing.Color.Yellow;
-            this.answerCButton.Location = new System.Drawing.Point(234, 488);
+            this.answerCButton.Location = new System.Drawing.Point(312, 601);
+            this.answerCButton.Margin = new System.Windows.Forms.Padding(4);
             this.answerCButton.Name = "answerCButton";
-            this.answerCButton.Size = new System.Drawing.Size(187, 65);
+            this.answerCButton.Size = new System.Drawing.Size(249, 80);
             this.answerCButton.TabIndex = 7;
             this.answerCButton.Text = "c";
             this.answerCButton.Click += new System.EventHandler(this.checkAnswerEvent);
@@ -326,9 +335,10 @@
             this.answerBButton.FillColor2 = System.Drawing.Color.DarkBlue;
             this.answerBButton.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.answerBButton.ForeColor = System.Drawing.Color.Yellow;
-            this.answerBButton.Location = new System.Drawing.Point(492, 397);
+            this.answerBButton.Location = new System.Drawing.Point(656, 489);
+            this.answerBButton.Margin = new System.Windows.Forms.Padding(4);
             this.answerBButton.Name = "answerBButton";
-            this.answerBButton.Size = new System.Drawing.Size(187, 65);
+            this.answerBButton.Size = new System.Drawing.Size(249, 80);
             this.answerBButton.TabIndex = 6;
             this.answerBButton.Text = "b";
             this.answerBButton.Click += new System.EventHandler(this.checkAnswerEvent);
@@ -346,9 +356,10 @@
             this.answerAButton.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.answerAButton.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.answerAButton.ForeColor = System.Drawing.Color.Yellow;
-            this.answerAButton.Location = new System.Drawing.Point(234, 397);
+            this.answerAButton.Location = new System.Drawing.Point(312, 489);
+            this.answerAButton.Margin = new System.Windows.Forms.Padding(4);
             this.answerAButton.Name = "answerAButton";
-            this.answerAButton.Size = new System.Drawing.Size(187, 65);
+            this.answerAButton.Size = new System.Drawing.Size(249, 80);
             this.answerAButton.TabIndex = 5;
             this.answerAButton.Text = "a";
             this.answerAButton.Click += new System.EventHandler(this.checkAnswerEvent);
@@ -363,18 +374,20 @@
             this.questionPanel.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.questionPanel.FillColor3 = System.Drawing.Color.DarkBlue;
             this.questionPanel.FillColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.questionPanel.Location = new System.Drawing.Point(234, 167);
+            this.questionPanel.Location = new System.Drawing.Point(312, 206);
+            this.questionPanel.Margin = new System.Windows.Forms.Padding(4);
             this.questionPanel.Name = "questionPanel";
-            this.questionPanel.Size = new System.Drawing.Size(445, 121);
+            this.questionPanel.Size = new System.Drawing.Size(593, 149);
             this.questionPanel.TabIndex = 3;
             // 
             // questionLabel
             // 
             this.questionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.questionLabel.ForeColor = System.Drawing.Color.Yellow;
-            this.questionLabel.Location = new System.Drawing.Point(35, 15);
+            this.questionLabel.Location = new System.Drawing.Point(47, 18);
+            this.questionLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.questionLabel.Name = "questionLabel";
-            this.questionLabel.Size = new System.Drawing.Size(379, 90);
+            this.questionLabel.Size = new System.Drawing.Size(505, 111);
             this.questionLabel.TabIndex = 0;
             this.questionLabel.Text = "Pytanie";
             this.questionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -397,7 +410,7 @@
             // 
             this.askAudienceButton.AutoRoundedCorners = true;
             this.askAudienceButton.BackColor = System.Drawing.Color.Transparent;
-            this.askAudienceButton.BorderRadius = 39;
+            this.askAudienceButton.BorderRadius = 48;
             this.askAudienceButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.askAudienceButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.askAudienceButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -409,7 +422,7 @@
             this.askAudienceButton.ImageSize = new System.Drawing.Size(80, 80);
             this.askAudienceButton.Location = new System.Drawing.Point(156, 10);
             this.askAudienceButton.Name = "askAudienceButton";
-            this.askAudienceButton.Size = new System.Drawing.Size(83, 80);
+            this.askAudienceButton.Size = new System.Drawing.Size(111, 98);
             this.askAudienceButton.TabIndex = 12;
             this.askAudienceButton.Tag = "ask";
             this.askAudienceButton.Click += new System.EventHandler(this.helpButtonsEvent);
@@ -418,7 +431,7 @@
             // 
             this.swapQuestionButton.AutoRoundedCorners = true;
             this.swapQuestionButton.BackColor = System.Drawing.Color.Transparent;
-            this.swapQuestionButton.BorderRadius = 39;
+            this.swapQuestionButton.BorderRadius = 48;
             this.swapQuestionButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.swapQuestionButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.swapQuestionButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -430,7 +443,7 @@
             this.swapQuestionButton.ImageSize = new System.Drawing.Size(80, 80);
             this.swapQuestionButton.Location = new System.Drawing.Point(78, 9);
             this.swapQuestionButton.Name = "swapQuestionButton";
-            this.swapQuestionButton.Size = new System.Drawing.Size(83, 80);
+            this.swapQuestionButton.Size = new System.Drawing.Size(111, 98);
             this.swapQuestionButton.TabIndex = 11;
             this.swapQuestionButton.Tag = "swap";
             this.swapQuestionButton.Click += new System.EventHandler(this.helpButtonsEvent);
@@ -439,7 +452,7 @@
             // 
             this.fiftyButton.AutoRoundedCorners = true;
             this.fiftyButton.BackColor = System.Drawing.Color.Transparent;
-            this.fiftyButton.BorderRadius = 39;
+            this.fiftyButton.BorderRadius = 48;
             this.fiftyButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.fiftyButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.fiftyButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -450,9 +463,10 @@
             this.fiftyButton.Image = ((System.Drawing.Image)(resources.GetObject("fiftyButton.Image")));
             this.fiftyButton.ImageSize = new System.Drawing.Size(80, 80);
             this.fiftyButton.IndicateFocus = true;
-            this.fiftyButton.Location = new System.Drawing.Point(0, 10);
+            this.fiftyButton.Location = new System.Drawing.Point(0, 12);
+            this.fiftyButton.Margin = new System.Windows.Forms.Padding(4);
             this.fiftyButton.Name = "fiftyButton";
-            this.fiftyButton.Size = new System.Drawing.Size(83, 80);
+            this.fiftyButton.Size = new System.Drawing.Size(111, 98);
             this.fiftyButton.TabIndex = 9;
             this.fiftyButton.Tag = "50";
             this.fiftyButton.Click += new System.EventHandler(this.helpButtonsEvent);
@@ -472,7 +486,7 @@
             this.endGameButton.ForeColor = System.Drawing.Color.Yellow;
             this.endGameButton.Location = new System.Drawing.Point(44, 103);
             this.endGameButton.Name = "endGameButton";
-            this.endGameButton.Size = new System.Drawing.Size(164, 38);
+            this.endGameButton.Size = new System.Drawing.Size(219, 47);
             this.endGameButton.TabIndex = 10;
             this.endGameButton.Text = "Zakończ grę";
             this.endGameButton.Click += new System.EventHandler(this.endGameButton_Click);
@@ -492,6 +506,7 @@
             this.prizesListView.TabIndex = 3;
             this.prizesListView.UseCompatibleStateImageBehavior = false;
             this.prizesListView.View = System.Windows.Forms.View.List;
+            this.prizesListView.SelectedIndexChanged += new System.EventHandler(this.prizesListView_SelectedIndexChanged);
             // 
             // answerDButton
             // 
@@ -506,9 +521,10 @@
             this.answerDButton.FillColor2 = System.Drawing.Color.DarkBlue;
             this.answerDButton.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.answerDButton.ForeColor = System.Drawing.Color.Yellow;
-            this.answerDButton.Location = new System.Drawing.Point(492, 488);
+            this.answerDButton.Location = new System.Drawing.Point(656, 601);
+            this.answerDButton.Margin = new System.Windows.Forms.Padding(4);
             this.answerDButton.Name = "answerDButton";
-            this.answerDButton.Size = new System.Drawing.Size(187, 65);
+            this.answerDButton.Size = new System.Drawing.Size(249, 80);
             this.answerDButton.TabIndex = 8;
             this.answerDButton.Text = "d";
             this.answerDButton.Click += new System.EventHandler(this.checkAnswerEvent);
@@ -522,8 +538,9 @@
             this.namePanel.Controls.Add(this.nameTextBox);
             this.namePanel.Controls.Add(this.guna2HtmlLabel1);
             this.namePanel.Location = new System.Drawing.Point(0, 0);
+            this.namePanel.Margin = new System.Windows.Forms.Padding(4);
             this.namePanel.Name = "namePanel";
-            this.namePanel.Size = new System.Drawing.Size(1024, 598);
+            this.namePanel.Size = new System.Drawing.Size(1365, 736);
             this.namePanel.TabIndex = 6;
             this.namePanel.Visible = false;
             // 
@@ -535,7 +552,7 @@
             this.levelNPLabel.ForeColor = System.Drawing.Color.BurlyWood;
             this.levelNPLabel.Location = new System.Drawing.Point(397, 35);
             this.levelNPLabel.Name = "levelNPLabel";
-            this.levelNPLabel.Size = new System.Drawing.Size(251, 37);
+            this.levelNPLabel.Size = new System.Drawing.Size(308, 46);
             this.levelNPLabel.TabIndex = 14;
             this.levelNPLabel.Text = "Poziom - Łatwy";
             // 
@@ -552,9 +569,10 @@
             this.goToMenuFromNPButton.FillColor = System.Drawing.Color.DarkBlue;
             this.goToMenuFromNPButton.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.goToMenuFromNPButton.ForeColor = System.Drawing.Color.White;
-            this.goToMenuFromNPButton.Location = new System.Drawing.Point(441, 488);
+            this.goToMenuFromNPButton.Location = new System.Drawing.Point(588, 601);
+            this.goToMenuFromNPButton.Margin = new System.Windows.Forms.Padding(4);
             this.goToMenuFromNPButton.Name = "goToMenuFromNPButton";
-            this.goToMenuFromNPButton.Size = new System.Drawing.Size(167, 65);
+            this.goToMenuFromNPButton.Size = new System.Drawing.Size(223, 80);
             this.goToMenuFromNPButton.TabIndex = 13;
             this.goToMenuFromNPButton.Text = "Wróć do menu";
             this.goToMenuFromNPButton.UseTransparentBackground = true;
@@ -573,9 +591,10 @@
             this.goToGameButton.FillColor = System.Drawing.Color.DarkBlue;
             this.goToGameButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.goToGameButton.ForeColor = System.Drawing.Color.White;
-            this.goToGameButton.Location = new System.Drawing.Point(418, 228);
+            this.goToGameButton.Location = new System.Drawing.Point(557, 281);
+            this.goToGameButton.Margin = new System.Windows.Forms.Padding(4);
             this.goToGameButton.Name = "goToGameButton";
-            this.goToGameButton.Size = new System.Drawing.Size(206, 65);
+            this.goToGameButton.Size = new System.Drawing.Size(275, 80);
             this.goToGameButton.TabIndex = 6;
             this.goToGameButton.Text = "Kontynuuj";
             this.goToGameButton.UseTransparentBackground = true;
@@ -596,12 +615,13 @@
             this.nameTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.nameTextBox.ForeColor = System.Drawing.Color.Black;
             this.nameTextBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.nameTextBox.Location = new System.Drawing.Point(418, 159);
+            this.nameTextBox.Location = new System.Drawing.Point(557, 196);
+            this.nameTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.PasswordChar = '\0';
             this.nameTextBox.PlaceholderText = "Podaj nick";
             this.nameTextBox.SelectedText = "";
-            this.nameTextBox.Size = new System.Drawing.Size(206, 53);
+            this.nameTextBox.Size = new System.Drawing.Size(275, 65);
             this.nameTextBox.TabIndex = 1;
             this.nameTextBox.Tag = "Podaj swój nick";
             this.nameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -609,9 +629,10 @@
             // guna2HtmlLabel1
             // 
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(452, 228);
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(603, 281);
+            this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(4);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(25, 15);
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(31, 18);
             this.guna2HtmlLabel1.TabIndex = 0;
             this.guna2HtmlLabel1.Text = "xdxd";
             // 
@@ -626,8 +647,9 @@
             this.settingsPanel.Controls.Add(this.easyButton);
             this.settingsPanel.ForeColor = System.Drawing.Color.DarkBlue;
             this.settingsPanel.Location = new System.Drawing.Point(0, 0);
+            this.settingsPanel.Margin = new System.Windows.Forms.Padding(4);
             this.settingsPanel.Name = "settingsPanel";
-            this.settingsPanel.Size = new System.Drawing.Size(1024, 600);
+            this.settingsPanel.Size = new System.Drawing.Size(1365, 738);
             this.settingsPanel.TabIndex = 11;
             this.settingsPanel.Visible = false;
             // 
@@ -637,9 +659,10 @@
             this.currentLevelLabel.BackColor = System.Drawing.Color.Transparent;
             this.currentLevelLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.currentLevelLabel.ForeColor = System.Drawing.Color.BurlyWood;
-            this.currentLevelLabel.Location = new System.Drawing.Point(335, 75);
+            this.currentLevelLabel.Location = new System.Drawing.Point(447, 92);
+            this.currentLevelLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.currentLevelLabel.Name = "currentLevelLabel";
-            this.currentLevelLabel.Size = new System.Drawing.Size(389, 37);
+            this.currentLevelLabel.Size = new System.Drawing.Size(476, 46);
             this.currentLevelLabel.TabIndex = 10;
             this.currentLevelLabel.Text = "Aktualny poziom - Łatwy";
             // 
@@ -649,9 +672,10 @@
             this.settingsLabel.BackColor = System.Drawing.Color.Transparent;
             this.settingsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.settingsLabel.ForeColor = System.Drawing.Color.BurlyWood;
-            this.settingsLabel.Location = new System.Drawing.Point(399, 0);
+            this.settingsLabel.Location = new System.Drawing.Point(532, 0);
+            this.settingsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.settingsLabel.Name = "settingsLabel";
-            this.settingsLabel.Size = new System.Drawing.Size(269, 55);
+            this.settingsLabel.Size = new System.Drawing.Size(331, 69);
             this.settingsLabel.TabIndex = 9;
             this.settingsLabel.Text = "Ustawienia";
             // 
@@ -670,7 +694,7 @@
             this.backToMenuFromSettingsButton.ForeColor = System.Drawing.Color.White;
             this.backToMenuFromSettingsButton.Location = new System.Drawing.Point(441, 488);
             this.backToMenuFromSettingsButton.Name = "backToMenuFromSettingsButton";
-            this.backToMenuFromSettingsButton.Size = new System.Drawing.Size(167, 65);
+            this.backToMenuFromSettingsButton.Size = new System.Drawing.Size(223, 80);
             this.backToMenuFromSettingsButton.TabIndex = 8;
             this.backToMenuFromSettingsButton.Text = "Wróć do menu";
             this.backToMenuFromSettingsButton.UseTransparentBackground = true;
@@ -689,9 +713,10 @@
             this.mediumButton.FillColor = System.Drawing.Color.DarkBlue;
             this.mediumButton.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.mediumButton.ForeColor = System.Drawing.Color.White;
-            this.mediumButton.Location = new System.Drawing.Point(441, 234);
+            this.mediumButton.Location = new System.Drawing.Point(588, 288);
+            this.mediumButton.Margin = new System.Windows.Forms.Padding(4);
             this.mediumButton.Name = "mediumButton";
-            this.mediumButton.Size = new System.Drawing.Size(167, 65);
+            this.mediumButton.Size = new System.Drawing.Size(223, 80);
             this.mediumButton.TabIndex = 7;
             this.mediumButton.Tag = "medium";
             this.mediumButton.Text = "Średni";
@@ -711,9 +736,10 @@
             this.hardButton.FillColor = System.Drawing.Color.DarkBlue;
             this.hardButton.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.hardButton.ForeColor = System.Drawing.Color.White;
-            this.hardButton.Location = new System.Drawing.Point(443, 315);
+            this.hardButton.Location = new System.Drawing.Point(591, 388);
+            this.hardButton.Margin = new System.Windows.Forms.Padding(4);
             this.hardButton.Name = "hardButton";
-            this.hardButton.Size = new System.Drawing.Size(167, 65);
+            this.hardButton.Size = new System.Drawing.Size(223, 80);
             this.hardButton.TabIndex = 6;
             this.hardButton.Tag = "hard";
             this.hardButton.Text = "Trudny";
@@ -733,9 +759,10 @@
             this.easyButton.FillColor = System.Drawing.Color.SeaGreen;
             this.easyButton.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.easyButton.ForeColor = System.Drawing.Color.White;
-            this.easyButton.Location = new System.Drawing.Point(441, 145);
+            this.easyButton.Location = new System.Drawing.Point(588, 178);
+            this.easyButton.Margin = new System.Windows.Forms.Padding(4);
             this.easyButton.Name = "easyButton";
-            this.easyButton.Size = new System.Drawing.Size(167, 65);
+            this.easyButton.Size = new System.Drawing.Size(223, 80);
             this.easyButton.TabIndex = 5;
             this.easyButton.Tag = "easy";
             this.easyButton.Text = "Łatwy";
@@ -872,7 +899,7 @@
             // 
             // MenuForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 561);
             this.Controls.Add(this.roundPanel);
@@ -882,6 +909,7 @@
             this.Controls.Add(this.settingsPanel);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MenuForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Milionerzy";

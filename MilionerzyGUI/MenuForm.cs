@@ -36,6 +36,90 @@ namespace MilionerzyGUI
             game.questions = game.readQuestions();        // Pobranie pytań do rozgrywki
                                                           //ListViewItem item= new ListViewItem("itemjeden",0);
                                                           //gameQuestions = game.readQuestions();
+            columnHeader2.Width = 35;
+
+            prizesListView.Columns.Add(columnHeader);
+            prizesListView.Columns.Add(columnHeader2);
+            columnHeader2.Width = 35;
+
+            prizesListView.Columns.Add(columnHeader);
+            prizesListView.Columns.Add(columnHeader2);
+            columnHeader2.Width = 35;
+
+            prizesListView.Columns.Add(columnHeader);
+            prizesListView.Columns.Add(columnHeader2);
+            columnHeader2.Width = 35;
+
+            prizesListView.Columns.Add(columnHeader);
+            prizesListView.Columns.Add(columnHeader2);
+            columnHeader2.Width = 35;
+
+            prizesListView.Columns.Add(columnHeader);
+            prizesListView.Columns.Add(columnHeader2);
+            columnHeader2.Width = 35;
+
+            prizesListView.Columns.Add(columnHeader);
+            prizesListView.Columns.Add(columnHeader2);
+            columnHeader2.Width = 35;
+
+            prizesListView.Columns.Add(columnHeader);
+            prizesListView.Columns.Add(columnHeader2);
+            columnHeader2.Width = 35;
+
+            prizesListView.Columns.Add(columnHeader);
+            prizesListView.Columns.Add(columnHeader2);
+            columnHeader2.Width = 35;
+
+            prizesListView.Columns.Add(columnHeader);
+            prizesListView.Columns.Add(columnHeader2);
+            columnHeader2.Width = 35;
+
+            prizesListView.Columns.Add(columnHeader);
+            prizesListView.Columns.Add(columnHeader2);
+            columnHeader2.Width = 35;
+
+            prizesListView.Columns.Add(columnHeader);
+            prizesListView.Columns.Add(columnHeader2);
+            columnHeader2.Width = 35;
+
+            prizesListView.Columns.Add(columnHeader);
+            prizesListView.Columns.Add(columnHeader2);
+            columnHeader2.Width = 35;
+
+            prizesListView.Columns.Add(columnHeader);
+            prizesListView.Columns.Add(columnHeader2);
+            columnHeader2.Width = 35;
+
+            prizesListView.Columns.Add(columnHeader);
+            prizesListView.Columns.Add(columnHeader2);
+            columnHeader2.Width = 35;
+
+            prizesListView.Columns.Add(columnHeader);
+            prizesListView.Columns.Add(columnHeader2);
+            columnHeader2.Width = 35;
+
+            prizesListView.Columns.Add(columnHeader);
+            prizesListView.Columns.Add(columnHeader2);
+            columnHeader2.Width = 35;
+
+            prizesListView.Columns.Add(columnHeader);
+            prizesListView.Columns.Add(columnHeader2);
+            columnHeader2.Width = 35;
+
+            prizesListView.Columns.Add(columnHeader);
+            prizesListView.Columns.Add(columnHeader2);
+            columnHeader2.Width = 35;
+
+            prizesListView.Columns.Add(columnHeader);
+            prizesListView.Columns.Add(columnHeader2);
+            columnHeader2.Width = 35;
+
+            prizesListView.Columns.Add(columnHeader);
+            prizesListView.Columns.Add(columnHeader2);
+            columnHeader2.Width = 35;
+
+            prizesListView.Columns.Add(columnHeader);
+            prizesListView.Columns.Add(columnHeader2);
             int count = 12;
             foreach (var prize in game.Prizes.Values.Reverse())
             {
@@ -54,7 +138,12 @@ namespace MilionerzyGUI
                 count--;
             }
 
+            //prizesListView.Columns[0].TextAlign = HorizontalAlignment.Center;
+            //prizesListView.Columns[1].TextAlign = HorizontalAlignment.Center;
+            //columnHeader.TextAlign = HorizontalAlignment.Center;
+            //columnHeader2.TextAlign = HorizontalAlignment.Center;
         }
+
         private void checkAnswerEvent(object sender, EventArgs e)
         {
             var senderObject = (Guna2GradientButton)sender;
@@ -166,8 +255,23 @@ namespace MilionerzyGUI
                     swapQuestionButton.Visible = false;
                     
                     break;
-                case "ask":
-                    askAudienceHelpMethod();
+        private void endOfTheGame()
+        {
+            game.resetGame();
+            prizesListView.Items.Clear();
+            answerAButton.FillColor = Color.DarkBlue;
+            answerAButton.FillColor2 = Color.FromArgb(128, 128, 255);
+
+            answerBButton.FillColor = Color.FromArgb(128, 128, 255);
+            answerBButton.FillColor2 = Color.DarkBlue;
+
+            answerCButton.FillColor = Color.DarkBlue;
+            answerCButton.FillColor2 = Color.FromArgb(128, 128, 255);
+
+            answerDButton.FillColor = Color.FromArgb(128, 128, 255);
+            answerDButton.FillColor2 = Color.DarkBlue;
+
+            winnerInfoLabel.Visible = false;
                     askAudienceGroupBox.Visible = true;
                     //game.askAudience(game.roundNumber);
                     game.askAudience2(game.roundNumber);
@@ -228,23 +332,7 @@ namespace MilionerzyGUI
         }
         private void endOfTheGame()
         {
-            game.resetGame();
-            prizesListView.Items.Clear();
-            answerAButton.FillColor = Color.DarkBlue;
-            answerAButton.FillColor2 = Color.FromArgb(128, 128, 255);
 
-            answerBButton.FillColor = Color.FromArgb(128, 128, 255);
-            answerBButton.FillColor2 = Color.DarkBlue;
-
-            answerCButton.FillColor = Color.DarkBlue;
-            answerCButton.FillColor2 = Color.FromArgb(128, 128, 255);
-
-            answerDButton.FillColor = Color.FromArgb(128, 128, 255);
-            answerDButton.FillColor2 = Color.DarkBlue;
-
-            winnerInfoLabel.Visible = false;
-
-        }
         private void askQuestion(int roundNr)
         {
             if (game.isGameActive && roundNr < 13)
@@ -339,6 +427,11 @@ namespace MilionerzyGUI
             roundPanel.Visible = false;
             endOfTheGame();
             menuPanel.Visible = true;
+        }
+
+        private void prizesListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
