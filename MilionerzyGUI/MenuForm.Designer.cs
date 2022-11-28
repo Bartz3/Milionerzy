@@ -484,11 +484,11 @@
             this.prizesListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.prizesListView.ForeColor = System.Drawing.Color.White;
             this.prizesListView.HideSelection = false;
-            this.prizesListView.Location = new System.Drawing.Point(106, 257);
+            this.prizesListView.Location = new System.Drawing.Point(54, 236);
             this.prizesListView.Margin = new System.Windows.Forms.Padding(0);
             this.prizesListView.Name = "prizesListView";
             this.prizesListView.Scrollable = false;
-            this.prizesListView.Size = new System.Drawing.Size(133, 349);
+            this.prizesListView.Size = new System.Drawing.Size(133, 286);
             this.prizesListView.TabIndex = 3;
             this.prizesListView.UseCompatibleStateImageBehavior = false;
             this.prizesListView.View = System.Windows.Forms.View.List;
