@@ -66,8 +66,17 @@
             this.mediumButton = new Guna.UI2.WinForms.Guna2Button();
             this.hardButton = new Guna.UI2.WinForms.Guna2Button();
             this.easyButton = new Guna.UI2.WinForms.Guna2Button();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnCenter = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.winnerInfoLabel = new System.Windows.Forms.Label();
+            this.helpButtonsGroupBox = new System.Windows.Forms.GroupBox();
+            this.askAudienceGroupBox = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.cPB = new Guna.UI2.WinForms.Guna2ProgressBar();
+            this.bPB = new Guna.UI2.WinForms.Guna2ProgressBar();
+            this.dPB = new Guna.UI2.WinForms.Guna2ProgressBar();
+            this.aPB = new Guna.UI2.WinForms.Guna2ProgressBar();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.menuPanel.SuspendLayout();
             this.lastResultsPanel.SuspendLayout();
             this.roundPanel.SuspendLayout();
@@ -140,8 +149,7 @@
             this.exitGameButton.FillColor = System.Drawing.Color.DarkBlue;
             this.exitGameButton.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.exitGameButton.ForeColor = System.Drawing.Color.White;
-            this.exitGameButton.Location = new System.Drawing.Point(588, 617);
-            this.exitGameButton.Margin = new System.Windows.Forms.Padding(4);
+            this.exitGameButton.Location = new System.Drawing.Point(441, 488);
             this.exitGameButton.Name = "exitGameButton";
             this.exitGameButton.Size = new System.Drawing.Size(223, 80);
             this.exitGameButton.TabIndex = 8;
@@ -219,8 +227,7 @@
             this.goToMenuFromLRButton.FillColor = System.Drawing.Color.DarkBlue;
             this.goToMenuFromLRButton.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.goToMenuFromLRButton.ForeColor = System.Drawing.Color.White;
-            this.goToMenuFromLRButton.Location = new System.Drawing.Point(588, 617);
-            this.goToMenuFromLRButton.Margin = new System.Windows.Forms.Padding(4);
+            this.goToMenuFromLRButton.Location = new System.Drawing.Point(443, 488);
             this.goToMenuFromLRButton.Name = "goToMenuFromLRButton";
             this.goToMenuFromLRButton.Size = new System.Drawing.Size(223, 80);
             this.goToMenuFromLRButton.TabIndex = 12;
@@ -230,17 +237,17 @@
             // 
             // lastResultsListView
             // 
-            this.lastResultsListView.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.lastResultsListView.BackColor = System.Drawing.Color.DarkBlue;
             this.lastResultsListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lastResultsListView.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.lastResultsListView.ForeColor = System.Drawing.Color.Yellow;
             this.lastResultsListView.HideSelection = false;
             this.lastResultsListView.Location = new System.Drawing.Point(507, 114);
             this.lastResultsListView.Margin = new System.Windows.Forms.Padding(4);
             this.lastResultsListView.Name = "lastResultsListView";
-            this.lastResultsListView.Size = new System.Drawing.Size(397, 453);
+            this.lastResultsListView.Size = new System.Drawing.Size(288, 344);
             this.lastResultsListView.TabIndex = 11;
             this.lastResultsListView.UseCompatibleStateImageBehavior = false;
-            this.lastResultsListView.View = System.Windows.Forms.View.List;
+            this.lastResultsListView.View = System.Windows.Forms.View.Tile;
             // 
             // lastResultLabel
             // 
@@ -258,6 +265,7 @@
             // roundPanel
             // 
             this.roundPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("roundPanel.BackgroundImage")));
+            this.roundPanel.Controls.Add(this.askAudienceGroupBox);
             this.roundPanel.Controls.Add(this.goToMenuFromGPButton);
             this.roundPanel.Controls.Add(this.answerCButton);
             this.roundPanel.Controls.Add(this.answerBButton);
@@ -387,16 +395,14 @@
             // rightToolsGroupBox
             // 
             this.rightToolsGroupBox.BackColor = System.Drawing.Color.MidnightBlue;
-            this.rightToolsGroupBox.Controls.Add(this.askAudienceButton);
-            this.rightToolsGroupBox.Controls.Add(this.swapQuestionButton);
-            this.rightToolsGroupBox.Controls.Add(this.fiftyButton);
-            this.rightToolsGroupBox.Controls.Add(this.endGameButton);
+            this.rightToolsGroupBox.Controls.Add(this.helpButtonsGroupBox);
+            this.rightToolsGroupBox.Controls.Add(this.winnerInfoLabel);
             this.rightToolsGroupBox.Controls.Add(this.prizesListView);
-            this.rightToolsGroupBox.Location = new System.Drawing.Point(1047, 0);
-            this.rightToolsGroupBox.Margin = new System.Windows.Forms.Padding(4);
+            this.rightToolsGroupBox.Cursor = System.Windows.Forms.Cursors.Default;
+            this.rightToolsGroupBox.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.rightToolsGroupBox.Location = new System.Drawing.Point(785, -8);
             this.rightToolsGroupBox.Name = "rightToolsGroupBox";
-            this.rightToolsGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.rightToolsGroupBox.Size = new System.Drawing.Size(319, 738);
+            this.rightToolsGroupBox.Size = new System.Drawing.Size(239, 608);
             this.rightToolsGroupBox.TabIndex = 2;
             this.rightToolsGroupBox.TabStop = false;
             // 
@@ -414,8 +420,7 @@
             this.askAudienceButton.ForeColor = System.Drawing.Color.White;
             this.askAudienceButton.Image = ((System.Drawing.Image)(resources.GetObject("askAudienceButton.Image")));
             this.askAudienceButton.ImageSize = new System.Drawing.Size(80, 80);
-            this.askAudienceButton.Location = new System.Drawing.Point(204, 12);
-            this.askAudienceButton.Margin = new System.Windows.Forms.Padding(4);
+            this.askAudienceButton.Location = new System.Drawing.Point(156, 10);
             this.askAudienceButton.Name = "askAudienceButton";
             this.askAudienceButton.Size = new System.Drawing.Size(111, 98);
             this.askAudienceButton.TabIndex = 12;
@@ -436,8 +441,7 @@
             this.swapQuestionButton.ForeColor = System.Drawing.Color.White;
             this.swapQuestionButton.Image = ((System.Drawing.Image)(resources.GetObject("swapQuestionButton.Image")));
             this.swapQuestionButton.ImageSize = new System.Drawing.Size(80, 80);
-            this.swapQuestionButton.Location = new System.Drawing.Point(103, 12);
-            this.swapQuestionButton.Margin = new System.Windows.Forms.Padding(4);
+            this.swapQuestionButton.Location = new System.Drawing.Point(78, 9);
             this.swapQuestionButton.Name = "swapQuestionButton";
             this.swapQuestionButton.Size = new System.Drawing.Size(111, 98);
             this.swapQuestionButton.TabIndex = 11;
@@ -480,8 +484,7 @@
             this.endGameButton.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.endGameButton.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.endGameButton.ForeColor = System.Drawing.Color.Yellow;
-            this.endGameButton.Location = new System.Drawing.Point(47, 178);
-            this.endGameButton.Margin = new System.Windows.Forms.Padding(4);
+            this.endGameButton.Location = new System.Drawing.Point(44, 103);
             this.endGameButton.Name = "endGameButton";
             this.endGameButton.Size = new System.Drawing.Size(219, 47);
             this.endGameButton.TabIndex = 10;
@@ -491,17 +494,15 @@
             // prizesListView
             // 
             this.prizesListView.BackColor = System.Drawing.Color.MidnightBlue;
-            this.prizesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnCenter,
-            this.columnHeader1});
-            this.prizesListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.prizesListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.prizesListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.prizesListView.ForeColor = System.Drawing.Color.White;
             this.prizesListView.HideSelection = false;
-            this.prizesListView.Location = new System.Drawing.Point(0, 244);
+            this.prizesListView.Location = new System.Drawing.Point(106, 257);
             this.prizesListView.Margin = new System.Windows.Forms.Padding(0);
             this.prizesListView.Name = "prizesListView";
             this.prizesListView.Scrollable = false;
-            this.prizesListView.Size = new System.Drawing.Size(313, 490);
+            this.prizesListView.Size = new System.Drawing.Size(133, 349);
             this.prizesListView.TabIndex = 3;
             this.prizesListView.UseCompatibleStateImageBehavior = false;
             this.prizesListView.View = System.Windows.Forms.View.List;
@@ -548,9 +549,8 @@
             this.levelNPLabel.AutoSize = true;
             this.levelNPLabel.BackColor = System.Drawing.Color.Transparent;
             this.levelNPLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.levelNPLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.levelNPLabel.Location = new System.Drawing.Point(529, 92);
-            this.levelNPLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.levelNPLabel.ForeColor = System.Drawing.Color.BurlyWood;
+            this.levelNPLabel.Location = new System.Drawing.Point(397, 35);
             this.levelNPLabel.Name = "levelNPLabel";
             this.levelNPLabel.Size = new System.Drawing.Size(308, 46);
             this.levelNPLabel.TabIndex = 14;
@@ -692,8 +692,7 @@
             this.backToMenuFromSettingsButton.FillColor = System.Drawing.Color.DarkBlue;
             this.backToMenuFromSettingsButton.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.backToMenuFromSettingsButton.ForeColor = System.Drawing.Color.White;
-            this.backToMenuFromSettingsButton.Location = new System.Drawing.Point(588, 617);
-            this.backToMenuFromSettingsButton.Margin = new System.Windows.Forms.Padding(4);
+            this.backToMenuFromSettingsButton.Location = new System.Drawing.Point(441, 488);
             this.backToMenuFromSettingsButton.Name = "backToMenuFromSettingsButton";
             this.backToMenuFromSettingsButton.Size = new System.Drawing.Size(223, 80);
             this.backToMenuFromSettingsButton.TabIndex = 8;
@@ -770,27 +769,145 @@
             this.easyButton.UseTransparentBackground = true;
             this.easyButton.Click += new System.EventHandler(this.chooseGameLevelEvent);
             // 
-            // columnHeader1
+            // winnerInfoLabel
             // 
-            this.columnHeader1.DisplayIndex = 0;
-            this.columnHeader1.Width = 200;
+            this.winnerInfoLabel.AutoSize = true;
+            this.winnerInfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.winnerInfoLabel.ForeColor = System.Drawing.Color.Yellow;
+            this.winnerInfoLabel.Location = new System.Drawing.Point(52, 175);
+            this.winnerInfoLabel.Name = "winnerInfoLabel";
+            this.winnerInfoLabel.Size = new System.Drawing.Size(135, 20);
+            this.winnerInfoLabel.TabIndex = 13;
+            this.winnerInfoLabel.Text = "Twoja wygrana to ";
+            this.winnerInfoLabel.Visible = false;
             // 
-            // columnCenter
+            // helpButtonsGroupBox
             // 
-            this.columnCenter.DisplayIndex = 1;
-            this.columnCenter.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnCenter.Width = 200;
+            this.helpButtonsGroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.helpButtonsGroupBox.Controls.Add(this.fiftyButton);
+            this.helpButtonsGroupBox.Controls.Add(this.endGameButton);
+            this.helpButtonsGroupBox.Controls.Add(this.askAudienceButton);
+            this.helpButtonsGroupBox.Controls.Add(this.swapQuestionButton);
+            this.helpButtonsGroupBox.ForeColor = System.Drawing.Color.Yellow;
+            this.helpButtonsGroupBox.Location = new System.Drawing.Point(0, 8);
+            this.helpButtonsGroupBox.Name = "helpButtonsGroupBox";
+            this.helpButtonsGroupBox.Size = new System.Drawing.Size(239, 153);
+            this.helpButtonsGroupBox.TabIndex = 15;
+            this.helpButtonsGroupBox.TabStop = false;
+            this.helpButtonsGroupBox.Text = "Koła ratunkowe";
+            // 
+            // askAudienceGroupBox
+            // 
+            this.askAudienceGroupBox.BackColor = System.Drawing.Color.MidnightBlue;
+            this.askAudienceGroupBox.Controls.Add(this.label5);
+            this.askAudienceGroupBox.Controls.Add(this.label4);
+            this.askAudienceGroupBox.Controls.Add(this.label3);
+            this.askAudienceGroupBox.Controls.Add(this.label1);
+            this.askAudienceGroupBox.Controls.Add(this.aPB);
+            this.askAudienceGroupBox.Controls.Add(this.dPB);
+            this.askAudienceGroupBox.Controls.Add(this.bPB);
+            this.askAudienceGroupBox.Controls.Add(this.cPB);
+            this.askAudienceGroupBox.FillColor = System.Drawing.Color.MidnightBlue;
+            this.askAudienceGroupBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.askAudienceGroupBox.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.askAudienceGroupBox.Location = new System.Drawing.Point(273, 3);
+            this.askAudienceGroupBox.Name = "askAudienceGroupBox";
+            this.askAudienceGroupBox.Size = new System.Drawing.Size(361, 150);
+            this.askAudienceGroupBox.TabIndex = 15;
+            this.askAudienceGroupBox.Text = "Pytanie do publiczności";
+            this.askAudienceGroupBox.Visible = false;
+            // 
+            // cPB
+            // 
+            this.cPB.Location = new System.Drawing.Point(55, 100);
+            this.cPB.Name = "cPB";
+            this.cPB.ShowText = true;
+            this.cPB.Size = new System.Drawing.Size(107, 30);
+            this.cPB.TabIndex = 1;
+            this.cPB.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            // 
+            // bPB
+            // 
+            this.bPB.Location = new System.Drawing.Point(219, 54);
+            this.bPB.Name = "bPB";
+            this.bPB.ShowText = true;
+            this.bPB.Size = new System.Drawing.Size(107, 30);
+            this.bPB.TabIndex = 2;
+            this.bPB.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            // 
+            // dPB
+            // 
+            this.dPB.Location = new System.Drawing.Point(219, 100);
+            this.dPB.Name = "dPB";
+            this.dPB.ShowText = true;
+            this.dPB.Size = new System.Drawing.Size(107, 30);
+            this.dPB.TabIndex = 3;
+            this.dPB.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            // 
+            // aPB
+            // 
+            this.aPB.Location = new System.Drawing.Point(55, 54);
+            this.aPB.Name = "aPB";
+            this.aPB.ShowText = true;
+            this.aPB.Size = new System.Drawing.Size(107, 30);
+            this.aPB.TabIndex = 4;
+            this.aPB.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.label1.ForeColor = System.Drawing.Color.Yellow;
+            this.label1.Location = new System.Drawing.Point(12, 59);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(28, 25);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "a)";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.label3.ForeColor = System.Drawing.Color.Yellow;
+            this.label3.Location = new System.Drawing.Point(185, 59);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 25);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "b)";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.label4.ForeColor = System.Drawing.Color.Yellow;
+            this.label4.Location = new System.Drawing.Point(12, 105);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(27, 25);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "c)";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.label5.ForeColor = System.Drawing.Color.Yellow;
+            this.label5.Location = new System.Drawing.Point(185, 105);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(29, 25);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "d)";
             // 
             // MenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1419, 745);
+            this.ClientSize = new System.Drawing.Size(1008, 561);
             this.Controls.Add(this.roundPanel);
             this.Controls.Add(this.lastResultsPanel);
             this.Controls.Add(this.namePanel);
             this.Controls.Add(this.menuPanel);
             this.Controls.Add(this.settingsPanel);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MenuForm";
@@ -803,10 +920,14 @@
             this.roundPanel.ResumeLayout(false);
             this.questionPanel.ResumeLayout(false);
             this.rightToolsGroupBox.ResumeLayout(false);
+            this.rightToolsGroupBox.PerformLayout();
             this.namePanel.ResumeLayout(false);
             this.namePanel.PerformLayout();
             this.settingsPanel.ResumeLayout(false);
             this.settingsPanel.PerformLayout();
+            this.helpButtonsGroupBox.ResumeLayout(false);
+            this.askAudienceGroupBox.ResumeLayout(false);
+            this.askAudienceGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -850,8 +971,17 @@
         private Guna.UI2.WinForms.Guna2Button goToMenuFromNPButton;
         private System.Windows.Forms.Label levelNPLabel;
         private Guna.UI2.WinForms.Guna2GradientButton goToMenuFromGPButton;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnCenter;
+        private System.Windows.Forms.Label winnerInfoLabel;
+        private System.Windows.Forms.GroupBox helpButtonsGroupBox;
+        private Guna.UI2.WinForms.Guna2GroupBox askAudienceGroupBox;
+        private Guna.UI2.WinForms.Guna2ProgressBar dPB;
+        private Guna.UI2.WinForms.Guna2ProgressBar bPB;
+        private Guna.UI2.WinForms.Guna2ProgressBar cPB;
+        private Guna.UI2.WinForms.Guna2ProgressBar aPB;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
     }
 }
 

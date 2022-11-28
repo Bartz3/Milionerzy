@@ -30,27 +30,18 @@ namespace Milionerzy
         public int level { get; set; } = 0;
 
 
-        private string logo = @"
-            .___  ___.  __   __       __    ______   .__   __.  _______ .______      ________  ____    ____ 
-            |   \/   | |  | |  |     |  |  /  __  \  |  \ |  | |   ____||   _  \    |       /  \   \  /   / 
-            |  \  /  | |  | |  |     |  | |  |  |  | |   \|  | |  |__   |  |_)  |   `---/  /    \   \/   /  
-            |  |\/|  | |  | |  |     |  | |  |  |  | |  . `  | |   __|  |      /       /  /      \_    _/   
-            |  |  |  | |  | |  `----.|  | |  `--'  | |  |\   | |  |____ |  |\  \----. /  /----.    |  |     
-            |__|  |__| |__| |_______||__|  \______/  |__| \__| |_______|| _| `._____|/________|    |__|    " + "\n";
-
-
         private Dictionary<int, string> prizes = new Dictionary<int, string>()
         {
-            {0,"0 zł"},
-            {1,"500 zł"},
-            {2,"1000 zł"},
-            {3,"2000 zł"},
-            {4,"5000 zł"},
-            {5,"10 000 zł"},
-            {6,"20 000 zł"},
-            {7,"40 000 zł"},
-            {8,"75 000 zł"},
-            {9,"125 000 zł"},
+            {0, "0 zł"},
+            {1, "500 zł"},
+            {2, "1000 zł"},
+            {3, "2000 zł"},
+            {4, "5000 zł"},
+            {5, "10 000 zł"},
+            {6, "20 000 zł"},
+            {7, "40 000 zł"},
+            {8, "75 000 zł"},
+            {9, "125 000 zł"},
             {10,"250 000 zł"},
             {11,"500 000 zł"},
             {12,"1 000 000 zł"},
@@ -82,13 +73,11 @@ namespace Milionerzy
             intro.Load();
             intro.Play();
         }
-        private void End()
+        public void winnerEnding()
         {
             SoundPlayer outro = new SoundPlayer("outro.wav");
             outro.Load();
             outro.Play();
-            //string won=winnerPrize(roundNumber-1, isGameActive);
-            //show($"Gratulacje {playerName} wygrałeś {won}");
 
         }
     private string questionMethod() { return "Xd"; }
@@ -136,19 +125,6 @@ namespace Milionerzy
                 }
                 if (roundNumber == 12)
                 {
-
-                    //saveResult(prizes.GetValueOrDefault(12));
-                    //Console.WriteLine(@"
-                   
-                    //                 __        __                                 _ 
-                    //                 \ \      / /   _  __ _ _ __ __ _ _ __   __ _| |
-                    //                  \ \ /\ / / | | |/ _` | '__/ _` | '_ \ / _` | |
-                    //                   \ V  V /| |_| | (_| | | | (_| | | | | (_| |_|
-                    //                    \_/\_/  \__, |\__, |_|  \__,_|_| |_|\__,_(_)
-                    //                            |___/ |___/                         
-
-                    //");
-                    //show($"Gratulacje {playerName} wygrałeś w grze Milionerzy!");
                     SoundPlayer outro = new SoundPlayer("outro.wav");
                     outro.Load();
                     outro.Play();
@@ -204,22 +180,25 @@ namespace Milionerzy
             File.WriteAllText(resultsFileName, eee +"\n"+ currentContent);
        
         }
-        public void winnerPrize (int qNumber,bool activeGame)
+        public string winnerPrize (int qNumber,bool activeGame)
         {
 
             if (qNumber < 2 && activeGame)
             {
                 saveResult("0zł");
+                return "0zł";
 
             }
             else if (qNumber >= 2 && qNumber < 7 && activeGame)
             {
                 saveResult("1000zł");
+                return "1000zł";
 
             }
             else if (qNumber >= 7 && activeGame)
             {
                 saveResult("40 000zł");
+                return "40 000zł";
 
             }
             else if (!activeGame)
@@ -229,10 +208,12 @@ namespace Milionerzy
                     if (item.Key == qNumber)
                     {
                         saveResult(item.Value.ToString());
+                        return item.Value.ToString();
         
                     }
                 }
             }
+            return null;
    
         }    
      
@@ -451,5 +432,133 @@ namespace Milionerzy
             }
             return questionList;
         }
+
+        public int[] askAudience2(int qNumber)
+        {
+            Random rand = new Random();
+            int goodAnswerPercent = 0, percent1 = 0, percent2 = 0, percent3 = 0, cem = 100;
+
+            int[] output = new int[4];
+            output[0] = percent1; output[1] = percent2; output[2] = percent3; output[3] = goodAnswerPercent;
+            bool isUsed = false;
+            if (askAudienceBool)
+            {
+                string correctAnswer = questions[qNumber].correctAnswer;
+
+                if (fiftyFiftyBoolRound != roundNumber)
+                {
+                    if (qNumber < 9) goodAnswerPercent = rand.Next(40, 70);
+                    else goodAnswerPercent = rand.Next(20, 50);
+
+                    cem -= goodAnswerPercent;
+
+                    percent1 = rand.Next(0, cem);
+                    cem -= percent1;
+
+                    percent2 = rand.Next(0, cem);
+                    cem -= percent2;
+
+                    percent3 = cem;
+
+                    if (questions[qNumber].answerA.Substring(0, 1) == correctAnswer)
+                    {
+
+                        output[0] = goodAnswerPercent; output[1] = percent1; output[2]= percent2; output[3] = percent3;
+                    }
+                    if (questions[qNumber].answerB.Substring(0, 1) == correctAnswer)
+                    {
+
+                        output[0] = percent1; output[1] = goodAnswerPercent; output[2] = percent2; output[3] = percent3;
+                    }
+                    if (questions[qNumber].answerC.Substring(0, 1) == correctAnswer)
+                    {
+
+                        output[0] = goodAnswerPercent; output[1] = percent1; output[2] = percent2; output[3] = percent3;
+                    }
+                    if (questions[qNumber].answerD.Substring(0, 1) == correctAnswer)
+                   {
+     
+                        output[0] = percent1; output[1] = percent2; output[2] = percent3; output[3] = goodAnswerPercent;
+
+                    }
+                }
+                else //xd
+                {
+                    string[] twoAnswersDeleted = deletedAnswers.Split(' ');
+
+                    if (qNumber < 9) goodAnswerPercent = rand.Next(48, 70);
+                    else goodAnswerPercent = rand.Next(35, 50);
+
+                    cem -= goodAnswerPercent;
+
+                    if ("a" == twoAnswersDeleted[0] || "a" == twoAnswersDeleted[1])  // A to zła odpowiedź(wyeliminowana w 50/50)
+                    {
+                        ;
+                    }
+                    else if ("a" == correctAnswer) // A to dobra odpowiedź
+                    {
+                        //questions[qNumber].answerA += " " + goodAnswerPercent.ToString() + "%";
+                        output[0] = goodAnswerPercent;
+                    }
+                    else // A to zła odpowiedź została z dobrą
+                    {
+                        //questions[qNumber].answerA += " " + cem.ToString() + "%";
+                        output[0] = goodAnswerPercent = cem;
+                    }
+
+                    if ("b" == twoAnswersDeleted[0] || "b" == twoAnswersDeleted[1])
+                    {
+                        ;
+                    }
+                    else if ("b" == correctAnswer)
+                    {
+                        //questions[qNumber].answerB += " " + goodAnswerPercent.ToString() + "%";
+                        output[1] = goodAnswerPercent;
+                    }
+                    else
+                    {
+                        //questions[qNumber].answerB += " " + cem.ToString() + "%";
+                        output[1] = cem;
+                    }
+
+                    if ("c" == twoAnswersDeleted[0] || "c" == twoAnswersDeleted[1])
+                    {
+                        ;
+                    }
+                    else if ("c" == correctAnswer)
+                    {
+                        //questions[qNumber].answerC += " " + goodAnswerPercent.ToString() + "%";
+                        output[2] = goodAnswerPercent;
+                    }
+                    else
+                    {
+                        //questions[qNumber].answerC += " " + cem.ToString() + "%";
+                        output[2] = cem;
+                    }
+
+                    if ("d" == twoAnswersDeleted[0] || "d" == twoAnswersDeleted[1])
+                    {
+                        ;
+                    }
+                    else if ("d" == correctAnswer)
+                    {
+                        //questions[qNumber].answerD += " " + goodAnswerPercent.ToString() + "%";
+                        output[3] = goodAnswerPercent;
+                    }
+                    else
+                    {
+                        //questions[qNumber].answerD += " " + cem.ToString() + "%";
+                        output[3] = cem;
+                    }
+
+                }
+
+                askAudienceBool = false;
+                
+            }
+            return output;
+        }
+
+
     }
 }
