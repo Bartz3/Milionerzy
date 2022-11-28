@@ -86,6 +86,71 @@ namespace Milionerzy
             outro.Play();
 
         }
+    private string questionMethod() { return "Xd"; }
+        public void startGame()
+        {
+            //preGameDisplay();
+            string answer;
+            while (isGameActive && roundNumber < 13)
+            {
+
+                answer = questionMethod();
+                while (answer == null) answer = questionMethod();
+                
+                if (questions[roundNumber].isAnswerCorrect(answer))
+                {
+                    //Console.WriteLine("\n");
+                    if (roundNumber == 2 || roundNumber == 7)
+                    {
+                        //show("Gratulacje dobra odpowiedź! Uzyskałeś próg gwarantowany!");
+                        //show($"Twój stan konta to:{Prizes[roundNumber]}");
+                    }
+                    else
+                    {
+                        //show("Gratulacje dobra odpowiedź!");
+                        //show($"Twój stan konta to:{Prizes[roundNumber]}");
+                    }
+
+                    //showPrizes(roundNumber);
+                    //Console.ReadKey();
+                }
+                else
+                {
+                    //Console.WriteLine("\n");
+                    //show($"Niestety, odpowiedź {answer} jest nieprawidłowa." +
+                    //    $" Prawidłowa odpowiedź to {questions[roundNumber].correctAnswer}. Zakończyłeś grę na pytaniu numer {roundNumber}.");
+                    SoundPlayer badAnswer = new SoundPlayer("badAnswer.wav");
+                    badAnswer.Load();
+                    badAnswer.Play();
+
+
+                    //var winnings = winnerPrize(roundNumber, isGameActive);
+                    //saveResult(winnings);
+                    isGameActive = false;
+
+                }
+                if (roundNumber == 12)
+                {
+                    SoundPlayer outro = new SoundPlayer("outro.wav");
+                    outro.Load();
+                    outro.Play();
+                    isGameActive = false;
+                }
+                roundNumber++;
+                //gameLogic(answer);
+
+            }
+            isGameActive = false;
+            resetGame();
+
+            //show("Naciśnij dowolny przycisk aby przejść do głównego menu...");
+
+            Console.ReadKey(true);
+            //RunMainMenu();
+        }
+        private void exitGame()
+        {
+        }
         public void resetGame()
         {
             askAudienceBool = true;
@@ -97,16 +162,17 @@ namespace Milionerzy
 
         public List<string> lastResults()
         {
-
+            //StringBuilder sb = new StringBuilder();
             List<string> output = new List<string>();
             using (StreamReader sr = new StreamReader(resultsFileName))
             {                
                 while(!sr.EndOfStream)
                 {
+                     //sb.Append(sr.ReadLine());
                     output.Add(sr.ReadLine());
                 }    
             }
-
+            //return sb.ToString();
             return output;
         }
         private void saveResult(string winnings)
@@ -135,16 +201,11 @@ namespace Milionerzy
                 return "1000zł";
 
             }
-            else if (qNumber >= 7 && qNumber<13 & activeGame)
+            else if (qNumber >= 7 && activeGame)
             {
                 saveResult("40 000zł");
                 return "40 000zł";
 
-            }
-            else if (qNumber == 13 && activeGame)
-            {
-                saveResult("1 000 000zł");
-                return "1 000 000zł";
             }
             else if (!activeGame)
             {

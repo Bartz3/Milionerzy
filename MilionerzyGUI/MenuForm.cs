@@ -72,11 +72,8 @@ namespace MilionerzyGUI
                 askQuestion(game.roundNumber);
                 if (game.roundNumber == 13)
                 {
-                    winnerInfoLabel.Visible = true;
-                    winnerInfoLabel.Text = $"Twoja wygrana:\n{game.winnerPrize(game.roundNumber,game.isGameActive)}";
                     game.winnerEnding();
                     game.isGameActive = false;
-                    goToMenuFromGPButton.Visible = true;
                 }
             }
             else
