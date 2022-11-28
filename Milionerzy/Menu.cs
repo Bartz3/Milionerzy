@@ -32,7 +32,8 @@ namespace Milionerzy
             ConsoleKey keyPressed;
             do
             {
-                Console.Clear();
+                //Console.Clear();
+                Console.SetCursorPosition(0, 0);
                 if(option == 0)
                 {
                     DisplayOptions();
@@ -81,6 +82,7 @@ namespace Milionerzy
                 }
                 show($"{prefix}<{currentOption}>");
             }
+           
             Console.ResetColor();
         }
     

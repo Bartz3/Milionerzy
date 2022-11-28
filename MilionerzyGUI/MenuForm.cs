@@ -41,16 +41,12 @@ namespace MilionerzyGUI
                                                           //gameQuestions = game.readQuestions();
             ColumnHeader columnHeader = new ColumnHeader();
             columnHeader.Text = "Pytanie";
-            columnHeader.TextAlign = HorizontalAlignment.Center;
             columnHeader.Width = 235;
 
             ColumnHeader columnHeader2 = new ColumnHeader();
             columnHeader2.Text = "Próg ";
-            columnHeader2.TextAlign = HorizontalAlignment.Center;
             columnHeader2.Width = 35;
 
-            prizesListView.Columns.Add(columnHeader);
-            prizesListView.Columns.Add(columnHeader2);
             int count = 12;
             foreach (var prize in game.Prizes.Values.Reverse())
             {
@@ -68,7 +64,12 @@ namespace MilionerzyGUI
                 count--;
             }
 
+            //prizesListView.Columns[0].TextAlign = HorizontalAlignment.Center;
+            //prizesListView.Columns[1].TextAlign = HorizontalAlignment.Center;
+            //columnHeader.TextAlign = HorizontalAlignment.Center;
+            //columnHeader2.TextAlign = HorizontalAlignment.Center;
         }
+
         private void checkAnswerEvent(object sender, EventArgs e)
         {
             var senderObject = (Guna2GradientButton)sender;
@@ -211,10 +212,7 @@ namespace MilionerzyGUI
                     break;
             }
         }
-        private void endOfTheGame()
-        {
 
-        }
         private void askQuestion(int roundNr)
         {
             if (game.isGameActive && roundNr < 13)
@@ -303,6 +301,11 @@ namespace MilionerzyGUI
         {
             roundPanel.Visible = false;
             menuPanel.Visible = true;
+        }
+
+        private void prizesListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

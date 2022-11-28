@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milionerzy", "Milionerzy\Mi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MilionerzyGUI", "MilionerzyGUI\MilionerzyGUI.csproj", "{98DB8619-EED2-403A-80EA-AA29BDB210A1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF", "WPF", "{2B623569-5E67-4C34-81FF-CD23B5DA9545}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MilionerzyWPF", "MilionerzyWPF\MilionerzyWPF.csproj", "{F31E309B-0BC9-4574-A52F-011928FB8E4E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +25,16 @@ Global
 		{98DB8619-EED2-403A-80EA-AA29BDB210A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98DB8619-EED2-403A-80EA-AA29BDB210A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98DB8619-EED2-403A-80EA-AA29BDB210A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F31E309B-0BC9-4574-A52F-011928FB8E4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F31E309B-0BC9-4574-A52F-011928FB8E4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F31E309B-0BC9-4574-A52F-011928FB8E4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F31E309B-0BC9-4574-A52F-011928FB8E4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F31E309B-0BC9-4574-A52F-011928FB8E4E} = {2B623569-5E67-4C34-81FF-CD23B5DA9545}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7FFB20C5-133A-4EFD-8675-1CB0F3823BF5}
