@@ -36,90 +36,7 @@ namespace MilionerzyGUI
             game.questions = game.readQuestions();        // Pobranie pytań do rozgrywki
                                                           //ListViewItem item= new ListViewItem("itemjeden",0);
                                                           //gameQuestions = game.readQuestions();
-            columnHeader2.Width = 35;
-
-            prizesListView.Columns.Add(columnHeader);
-            prizesListView.Columns.Add(columnHeader2);
-            columnHeader2.Width = 35;
-
-            prizesListView.Columns.Add(columnHeader);
-            prizesListView.Columns.Add(columnHeader2);
-            columnHeader2.Width = 35;
-
-            prizesListView.Columns.Add(columnHeader);
-            prizesListView.Columns.Add(columnHeader2);
-            columnHeader2.Width = 35;
-
-            prizesListView.Columns.Add(columnHeader);
-            prizesListView.Columns.Add(columnHeader2);
-            columnHeader2.Width = 35;
-
-            prizesListView.Columns.Add(columnHeader);
-            prizesListView.Columns.Add(columnHeader2);
-            columnHeader2.Width = 35;
-
-            prizesListView.Columns.Add(columnHeader);
-            prizesListView.Columns.Add(columnHeader2);
-            columnHeader2.Width = 35;
-
-            prizesListView.Columns.Add(columnHeader);
-            prizesListView.Columns.Add(columnHeader2);
-            columnHeader2.Width = 35;
-
-            prizesListView.Columns.Add(columnHeader);
-            prizesListView.Columns.Add(columnHeader2);
-            columnHeader2.Width = 35;
-
-            prizesListView.Columns.Add(columnHeader);
-            prizesListView.Columns.Add(columnHeader2);
-            columnHeader2.Width = 35;
-
-            prizesListView.Columns.Add(columnHeader);
-            prizesListView.Columns.Add(columnHeader2);
-            columnHeader2.Width = 35;
-
-            prizesListView.Columns.Add(columnHeader);
-            prizesListView.Columns.Add(columnHeader2);
-            columnHeader2.Width = 35;
-
-            prizesListView.Columns.Add(columnHeader);
-            prizesListView.Columns.Add(columnHeader2);
-            columnHeader2.Width = 35;
-
-            prizesListView.Columns.Add(columnHeader);
-            prizesListView.Columns.Add(columnHeader2);
-            columnHeader2.Width = 35;
-
-            prizesListView.Columns.Add(columnHeader);
-            prizesListView.Columns.Add(columnHeader2);
-            columnHeader2.Width = 35;
-
-            prizesListView.Columns.Add(columnHeader);
-            prizesListView.Columns.Add(columnHeader2);
-            columnHeader2.Width = 35;
-
-            prizesListView.Columns.Add(columnHeader);
-            prizesListView.Columns.Add(columnHeader2);
-            columnHeader2.Width = 35;
-
-            prizesListView.Columns.Add(columnHeader);
-            prizesListView.Columns.Add(columnHeader2);
-            columnHeader2.Width = 35;
-
-            prizesListView.Columns.Add(columnHeader);
-            prizesListView.Columns.Add(columnHeader2);
-            columnHeader2.Width = 35;
-
-            prizesListView.Columns.Add(columnHeader);
-            prizesListView.Columns.Add(columnHeader2);
-            columnHeader2.Width = 35;
-
-            prizesListView.Columns.Add(columnHeader);
-            prizesListView.Columns.Add(columnHeader2);
-            columnHeader2.Width = 35;
-
-            prizesListView.Columns.Add(columnHeader);
-            prizesListView.Columns.Add(columnHeader2);
+       
             int count = 12;
             foreach (var prize in game.Prizes.Values.Reverse())
             {
@@ -248,13 +165,15 @@ namespace MilionerzyGUI
                     game.fiftyFifty(game.roundNumber);
                     fiftyButton.Visible = false;
                     game.fiftyFiftyBoolRound = game.roundNumber;
-                    
+
                     break;
                 case "swap":
                     game.changeQuestion(game.roundNumber);
                     swapQuestionButton.Visible = false;
-                    
+
                     break;
+            }
+        }
         private void endOfTheGame()
         {
             game.resetGame();
@@ -276,10 +195,10 @@ namespace MilionerzyGUI
                     //game.askAudience(game.roundNumber);
                     game.askAudience2(game.roundNumber);
                     askAudienceButton.Visible = false;
-                    break;
+                    
             }
-                    askQuestion(game.roundNumber);
-        }
+                  
+        
         private void askAudienceHelpMethod()
         {
             int[] chances = new int[4];
@@ -330,9 +249,7 @@ namespace MilionerzyGUI
             swapQuestionButton.Enabled = isActive;
             endGameButton.Enabled = isActive;
         }
-        private void endOfTheGame()
-        {
-
+   
         private void askQuestion(int roundNr)
         {
             if (game.isGameActive && roundNr < 13)
