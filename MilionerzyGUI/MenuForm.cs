@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Media;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -29,7 +30,6 @@ namespace MilionerzyGUI
  
 
         }
-
 
         public void loadQuestions()
         {
@@ -68,17 +68,23 @@ namespace MilionerzyGUI
             askAudienceGroupBox.Visible = false;
             if (userAnswer == game.questions[game.roundNumber].correctAnswer)
             {
+                highlightCorrectAnswer();
+                wait(1500);
+                clearHighlitedAnswer();
+
                 game.roundNumber++;
+
                 askQuestion(game.roundNumber);
                 if (game.roundNumber == 13)
                 {
                     game.winnerEnding();
                     game.isGameActive = false;
                 }
+
+
             }
             else
             {
-
                 senderObject.FillColor = Color.Red;
                 highlightCorrectAnswer();
                 game.badAnswerSound();
@@ -95,21 +101,38 @@ namespace MilionerzyGUI
             }
 
         }
+        private void clearHighlitedAnswer()
+        {
+            answerAButton.FillColor = Color.DarkBlue;
+            answerAButton.FillColor2 = Color.FromArgb(128, 128, 255);
+
+            answerBButton.FillColor = Color.FromArgb(128, 128, 255);
+            answerBButton.FillColor2 = Color.DarkBlue;
+
+            answerCButton.FillColor = Color.DarkBlue;
+            answerCButton.FillColor2 = Color.FromArgb(128, 128, 255);
+
+            answerDButton.FillColor = Color.FromArgb(128, 128, 255);
+            answerDButton.FillColor2 = Color.DarkBlue;
+
+        }
+ 
         private void highlightCorrectAnswer()
         {
+            
             switch (game.questions[game.roundNumber].correctAnswer)
             {
                 case "a":
                     answerAButton.FillColor = Color.Green;
                     break;
                 case "b":
-                    answerBButton.FillColor = Color.Green;
+                    answerBButton.FillColor2 = Color.Green;
                     break;
                 case "c":
                     answerCButton.FillColor = Color.Green;
                     break;
                 case "d":
-                    answerDButton.FillColor = Color.Green;
+                    answerDButton.FillColor2 = Color.Green;
                     break;
             }
 
@@ -167,31 +190,27 @@ namespace MilionerzyGUI
                 case "swap":
                     game.changeQuestion(game.roundNumber);
                     swapQuestionButton.Visible = false;
+                    break;
+                case "ask":
+                    askAudienceHelpMethod();
+                    askAudienceGroupBox.Visible = true;
+                    game.askAudience2(game.roundNumber);
+                    askAudienceButton.Visible = false;
 
                     break;
             }
+            askQuestion(game.roundNumber);
         }
         private void endOfTheGame()
         {
             game.resetGame();
             prizesListView.Items.Clear();
-            answerAButton.FillColor = Color.DarkBlue;
-            answerAButton.FillColor2 = Color.FromArgb(128, 128, 255);
-
-            answerBButton.FillColor = Color.FromArgb(128, 128, 255);
-            answerBButton.FillColor2 = Color.DarkBlue;
-
-            answerCButton.FillColor = Color.DarkBlue;
-            answerCButton.FillColor2 = Color.FromArgb(128, 128, 255);
-
-            answerDButton.FillColor = Color.FromArgb(128, 128, 255);
-            answerDButton.FillColor2 = Color.DarkBlue;
-
+            clearHighlitedAnswer();
             winnerInfoLabel.Visible = false;
-                    askAudienceGroupBox.Visible = true;
+             askAudienceGroupBox.Visible = true;
                     //game.askAudience(game.roundNumber);
                     game.askAudience2(game.roundNumber);
-                    askAudienceButton.Visible = false;
+                 askAudienceButton.Visible = false;
                     
             }
                   
@@ -200,6 +219,8 @@ namespace MilionerzyGUI
         {
             int[] chances = new int[4];
             chances = game.askAudience2(game.roundNumber);
+
+        
 
             aPB.Value = chances[0];
             aPB.Text = chances[0].ToString();
@@ -346,6 +367,25 @@ namespace MilionerzyGUI
         private void prizesListView_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+        private void wait(int milliseconds)
+        {
+            var timer1 = new System.Windows.Forms.Timer();
+            if (milliseconds == 0 || milliseconds < 0) return;
+
+            timer1.Interval = milliseconds;
+            timer1.Enabled = true;
+            timer1.Start();
+
+            timer1.Tick += (s, e) =>
+            {
+                timer1.Enabled = false;
+            };
+
+            while (timer1.Enabled)
+            {
+                Application.DoEvents();
+            }
         }
     }
 }
