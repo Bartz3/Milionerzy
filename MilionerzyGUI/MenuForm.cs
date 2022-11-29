@@ -33,9 +33,8 @@ namespace MilionerzyGUI
 
         public void loadQuestions()
         {
-            game.questions = game.readQuestions();        // Pobranie pytań do rozgrywki
-                                                          //ListViewItem item= new ListViewItem("itemjeden",0);
-                                                          //gameQuestions = game.readQuestions();
+            game.questions = game.readQuestions();   // Pobranie pytań do rozgrywki
+                                                         
        
             int count = 12;
             foreach (var prize in game.Prizes.Values.Reverse())
@@ -55,10 +54,7 @@ namespace MilionerzyGUI
                 count--;
             }
 
-            //prizesListView.Columns[0].TextAlign = HorizontalAlignment.Center;
-            //prizesListView.Columns[1].TextAlign = HorizontalAlignment.Center;
-            //columnHeader.TextAlign = HorizontalAlignment.Center;
-            //columnHeader2.TextAlign = HorizontalAlignment.Center;
+     
         }
 
         private void checkAnswerEvent(object sender, EventArgs e)
@@ -78,9 +74,11 @@ namespace MilionerzyGUI
                 if (game.roundNumber == 13)
                 {
                     game.winnerEnding();
+                    winnerInfoLabel.Text = $"Twoja wygrana:\n{game.winnerPrize(game.roundNumber, game.isGameActive)}";
                     game.isGameActive = false;
+                    goToMenuFromGPButton.Visible = true;
+                    winnerInfoLabel.Visible = true;
                 }
-
 
             }
             else
@@ -92,12 +90,10 @@ namespace MilionerzyGUI
                 Guna2MessageDialog dialog = new Guna2MessageDialog();
                 dialog.Caption = "Przegrana";
                 winnerInfoLabel.Visible = true;
-                winnerInfoLabel.Text = $"Twoja wygrana:\n{game.winnerPrize(game.roundNumber, game.isGameActive)}";
+                winnerInfoLabel.Text = $"Twoja wygrana:\n{game.winnerPrize(game.roundNumber-1, game.isGameActive)}";
                 goToMenuFromGPButton.Visible = true;
-                game.winnerPrize(game.roundNumber, game.isGameActive);
                 game.isGameActive = false;
                 
-
             }
 
         }
@@ -208,9 +204,7 @@ namespace MilionerzyGUI
             clearHighlitedAnswer();
             winnerInfoLabel.Visible = false;
              askAudienceGroupBox.Visible = true;
-                    //game.askAudience(game.roundNumber);
-                    game.askAudience2(game.roundNumber);
-                 askAudienceButton.Visible = false;
+           askAudienceButton.Visible = false;
                     
             }
                   
@@ -246,13 +240,11 @@ namespace MilionerzyGUI
 
                 case DialogResult.Yes:
                     game.isGameActive = false;
-                   
-                    game.winnerPrize(game.roundNumber, game.isGameActive);
                     goToMenuFromGPButton.Visible = true;
                     //game.resetGame();
                     //prizesListView.Items.Clear();
                     winnerInfoLabel.Visible = true;
-                    winnerInfoLabel.Text = $"Twoja wygrana:\n{game.winnerPrize(game.roundNumber, game.isGameActive)}";
+                    winnerInfoLabel.Text = $"Twoja wygrana:\n{game.winnerPrize(game.roundNumber-1, game.isGameActive)}";
                     highlightCorrectAnswer();
                     enableHelpButtons(false);   
                     break;
