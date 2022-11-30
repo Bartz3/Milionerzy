@@ -883,7 +883,7 @@
             this.easyButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.easyButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.easyButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.easyButton.FillColor = System.Drawing.Color.SeaGreen;
+            this.easyButton.FillColor = System.Drawing.Color.Green;
             this.easyButton.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.easyButton.ForeColor = System.Drawing.Color.White;
             this.easyButton.Location = new System.Drawing.Point(441, 145);
@@ -900,11 +900,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 561);
+            this.Controls.Add(this.settingsPanel);
             this.Controls.Add(this.roundPanel);
             this.Controls.Add(this.lastResultsPanel);
             this.Controls.Add(this.namePanel);
             this.Controls.Add(this.menuPanel);
-            this.Controls.Add(this.settingsPanel);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
